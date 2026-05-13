@@ -806,7 +806,7 @@ function Hero() {
             fetchpriority="high"
             style={{
               width: "100%",
-              maxWidth: 720,
+              maxWidth: 860,
               height: "auto",
               display: "block",
               filter: "drop-shadow(0 24px 48px rgba(0, 0, 0, 0.25))",
@@ -1248,7 +1248,7 @@ function Skills() {
 function KitOverview() {
   const items = [
     { label: "+170 Atividades com Grafismo Fonético", highlight: false },
-    { label: "Leitura fluida em 4–6 semanas", highlight: false },
+    { label: "Leitura fluida em 15 dias", highlight: false },
     { label: "Método Fonético comprovado", highlight: false },
     { label: "Fala Kids — Volume 1 + Volume 2", highlight: false },
     { label: "Bônus 1: Colorir com Textura — sensorial e criativo", bonus: true },
@@ -1936,7 +1936,7 @@ function Testimonials() {
 function ProductCard() {
   const features = [
     { text: "+170 Atividades com Grafismo Fonético", bonus: false },
-    { text: "Leitura fluida em 4–6 semanas", bonus: false },
+    { text: "Leitura fluida em 15 dias", bonus: false },
     { text: "Método Fonético comprovado", bonus: false },
     { text: "Fala Kids — Volume 1 + Volume 2", bonus: false },
     { text: "Bônus 1: Colorir com Textura", bonus: true },
