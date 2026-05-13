@@ -780,17 +780,9 @@ function Hero() {
         {/* RIGHT */}
         <div className="stack-wrap hero-books">
           <style>{`
-            @keyframes floatBook1 {
-              0%, 100% { transform: rotate(-15deg) translateY(0px); }
-              50% { transform: rotate(-15deg) translateY(-14px); }
-            }
-            @keyframes floatBook2 {
-              0%, 100% { transform: rotate(0deg) translateY(0px); }
-              50% { transform: rotate(0deg) translateY(-20px); }
-            }
-            @keyframes floatBook3 {
-              0%, 100% { transform: rotate(15deg) translateY(0px); }
-              50% { transform: rotate(15deg) translateY(-10px); }
+            @keyframes floatHero {
+              0%, 100% { transform: translateY(0px); }
+              50% { transform: translateY(-16px); }
             }
             @keyframes fadeUp {
               from { opacity: 0; transform: translateY(32px); }
@@ -836,85 +828,17 @@ function Hero() {
             }
           `}</style>
 
-          {/* Decorations: stars */}
-          <div className="deco" style={{ top: -10, left: 120, "--r": "-10deg" }}>
-            <StarOutline size={90} color={accent} stroke={4} />
-          </div>
-          <div className="deco float" style={{ top: 50, left: 30, "--r": "6deg" }}>
-            <StarSolid size={40} color="#fff" />
-          </div>
-          <div className="deco float" style={{ top: 120, left: 80, "--r": "-4deg", animationDelay: "-1.2s" }}>
-            <StarOutline size={52} color="#ffd166" stroke={3.2} />
-          </div>
-
-          {/* Sparkles around the books */}
-          <div className="deco float" style={{ top: 60, right: 20, "--r": "4deg", animationDelay: "-0.8s" }}>
-            <Sparkle size={40} color="#7feaff" />
-          </div>
-          <div className="deco float" style={{ top: 200, right: 60, "--r": "2deg", animationDelay: "-1.5s" }}>
-            <Sparkle size={28} color="#7feaff" />
-          </div>
-          <div className="deco float" style={{ bottom: 80, right: 30, "--r": "-3deg", animationDelay: "-2.2s" }}>
-            <Sparkle size={36} color="#7feaff" />
-          </div>
-          <div className="deco float" style={{ bottom: 140, left: 60, "--r": "-6deg", animationDelay: "-2s" }}>
-            <Sparkle size={32} color="#ffd166" />
-          </div>
-          <div className="deco float" style={{ top: 300, left: 20, "--r": "3deg", animationDelay: "-3s" }}>
-            <Sparkle size={24} color="#ffb6d9" />
-          </div>
-
-          {/* Product images — each floats independently */}
+          {/* Hero image */}
           <img
-            src="assets/images/cover-art-monte-palavra.svg"
-            alt="Monte a Palavra"
+            src="assets/images/hero_image.png"
+            alt="Kit Fala Kids"
             style={{
-              width: 210,
-              height: 305,
-              position: "absolute",
-              left: -10,
-              top: 80,
-              objectFit: "contain",
-              zIndex: 1,
-              borderRadius: 16,
-              filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25))",
-              animation: "floatBook1 3.8s ease-in-out infinite",
-            }}
-          />
-
-          <img
-            src="assets/images/cover-art-fala-kids.svg"
-            alt="Fala Kids"
-            style={{
-              width: 265,
-              height: 385,
-              position: "absolute",
-              left: 220,
-              top: 20,
-              objectFit: "contain",
-              zIndex: 3,
-              borderRadius: 16,
-              filter: "drop-shadow(0 28px 56px rgba(0, 0, 0, 0.35))",
-              animation: "floatBook2 4.5s ease-in-out infinite",
-              animationDelay: "-1s",
-            }}
-          />
-
-          <img
-            src="assets/images/cover-art-colorir-textura.svg"
-            alt="Colorir e Textura"
-            style={{
-              width: 210,
-              height: 305,
-              position: "absolute",
-              left: 510,
-              top: 80,
-              objectFit: "contain",
-              zIndex: 1,
-              borderRadius: 16,
-              filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25))",
-              animation: "floatBook3 5.2s ease-in-out infinite",
-              animationDelay: "-2.5s",
+              width: "100%",
+              maxWidth: 720,
+              height: "auto",
+              display: "block",
+              animation: "floatHero 4.5s ease-in-out infinite",
+              filter: "drop-shadow(0 24px 48px rgba(0, 0, 0, 0.25))",
             }}
           />
         </div>
