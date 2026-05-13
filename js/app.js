@@ -808,6 +808,7 @@ function Hero() {
           <img
             src="assets/images/hero_image.webp"
             alt="Kit Fala Kids"
+            fetchpriority="high"
             style={{
               width: "100%",
               maxWidth: 720,
