@@ -4,8 +4,9 @@
   "description": "Kit Completo de Alfabetização Infantil — Complete Literacy Kit for Children (3-7)",
   "main": "index.html",
   "scripts": {
-    "dev": "python -m http.server 3000",
-    "build": "echo 'No build required - uses CDN-loaded React and Babel'"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [
     "literacy",
@@ -20,7 +21,10 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.12"
+  },
   "engines": {
     "node": ">=16.0.0"
   }

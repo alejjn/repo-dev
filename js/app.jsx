@@ -3,7 +3,8 @@
    React components with dynamic tweaks, decorative SVGs, and product cards
    ════════════════════════════════════════════════════════════════════ */
 
-const { useState } = React;
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
 
 /* ────────── Palette & Copy Variants ────────── */
 const PALETTES = [
