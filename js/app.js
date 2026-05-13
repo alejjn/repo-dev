@@ -46,7 +46,7 @@ function FalaKidsLogo() {
     <img
       src="assets/images/fala-kids-new-logo-white.png"
       alt="Fala Kids Logo"
-      style={{ maxWidth: "280px", height: "auto", display: "block", animation: "floaty 3.5s ease-in-out infinite", animationDelay: "-0.7s" }}
+      style={{ maxWidth: "280px", height: "auto", display: "block" }}
     />
   );
 }
