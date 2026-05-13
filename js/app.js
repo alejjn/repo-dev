@@ -44,7 +44,7 @@ const COPY = {
 function FalaKidsLogo() {
   return (
     <img
-      src="assets/images/fala-kids-new-logo-white.png"
+      src="assets/images/fala-kids-new-logo-white.webp"
       alt="Fala Kids Logo"
       style={{ maxWidth: "280px", height: "auto", display: "block" }}
     />
@@ -1109,7 +1109,7 @@ function Skills() {
               <video
                 ref={videoRef}
                 src="assets/videos/criativo-fala-kids-1.mp4"
-                poster="assets/images/juba-do-leao.png"
+                poster="assets/images/juba-do-leao.webp"
                 playsInline
                 controls={playing}
                 style={{
@@ -1401,12 +1401,12 @@ function KitOverview() {
 function KitCarousel() {
   const [current, setCurrent] = React.useState(0);
   const images = [
-    "assets/images/produto_amostra_2.png",
-    "assets/images/produto_amostra_1.png",
-    "assets/images/produto_amostra_4.png",
+    "assets/images/produto_amostra_2.webp",
+    "assets/images/produto_amostra_1.webp",
+    "assets/images/produto_amostra_4.webp",
     "assets/images/produto_amostra_5.png",
     "assets/images/pato.png",
-    "assets/images/fada.png",
+    "assets/images/fada.webp",
   ];
 
   const prev = () => setCurrent(i => (i - 1 + images.length) % images.length);
@@ -2074,7 +2074,7 @@ function Footer() {
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 32, marginBottom: 40 }}>
           {/* Brand */}
           <div>
-            <img src="assets/images/fala-kids-new-logo-white.png" alt="Fala Kids" style={{ height: 48, display: "block" }} />
+            <img src="assets/images/fala-kids-new-logo-white.webp" alt="Fala Kids" style={{ height: 48, display: "block" }} />
           </div>
           {/* CTA */}
           <button
@@ -2139,7 +2139,7 @@ function PainValidation() {
         {/* Image — desktop: right col spans rows 1+2 / mobile: order 2 */}
         <div className="pain-image" style={{ gridRow: "1 / 3" }}>
           <img
-            src="assets/images/busy-mom2.png"
+            src="assets/images/busy-mom2.webp"
             alt="Mãe ocupada com filho"
             style={{
               width: "100%",
