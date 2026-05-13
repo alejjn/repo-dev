@@ -780,30 +780,6 @@ function Hero() {
         {/* RIGHT */}
         <div className="stack-wrap hero-books">
           <style>{`
-            @keyframes floatHero {
-              0%, 100% { transform: translateY(0px); }
-              50% { transform: translateY(-16px); }
-            }
-            @keyframes fadeUp {
-              from { opacity: 0; transform: translateY(32px); }
-              to   { opacity: 1; transform: translateY(0); }
-            }
-            @keyframes fadeIn {
-              from { opacity: 0; }
-              to   { opacity: 1; }
-            }
-            @keyframes slideInRight {
-              from { opacity: 0; transform: translateX(48px); }
-              to   { opacity: 1; transform: translateX(0); }
-            }
-            .hero-logo    { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
-            .hero-headline{ animation: fadeUp 0.6s ease both; animation-delay: 0.25s; }
-            .hero-lede    { animation: fadeUp 0.6s ease both; animation-delay: 0.4s; }
-            .hero-ctas    { animation: fadeUp 0.6s ease both; animation-delay: 0.55s; }
-            .hero-avatars { animation: fadeUp 0.6s ease both; animation-delay: 0.7s; }
-            .hero-books   { animation: slideInRight 0.7s ease both; animation-delay: 0.3s; }
-            .pain-text    { animation: fadeUp 0.6s ease both; animation-delay: 0.15s; }
-            .pain-image   { animation: fadeIn 0.8s ease both; animation-delay: 0.35s; }
             .cta-secondary {
               display: inline-flex;
               align-items: center;
@@ -837,7 +813,6 @@ function Hero() {
               maxWidth: 720,
               height: "auto",
               display: "block",
-              animation: "floatHero 4.5s ease-in-out infinite",
               filter: "drop-shadow(0 24px 48px rgba(0, 0, 0, 0.25))",
             }}
           />
