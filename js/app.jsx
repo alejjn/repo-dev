@@ -21,7 +21,7 @@ const COPY = {
     superLabel: "kit",
     headline: "Seu filho alfabetizado até 5x mais rápido.",
     lede: "Fala Kids é a melhor forma de aprender brincando",
-    cta: "Comprar agora",
+    cta: "Quero meu filho lendo agora",
   },
   short: {
     script1: "Fala",
@@ -745,17 +745,11 @@ function Hero() {
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }} className="hero-ctas">
             <button
               className="cta"
-              onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
+              onClick={() => document.getElementById('skills').scrollIntoView({ behavior: 'smooth' })}
             >
               {c.cta}
               <span className="arrow">›</span>
             </button>
-            <a
-              href="#skills"
-              className="cta-secondary"
-            >
-              Saber mais
-            </a>
           </div>
 
           <div className="avatar-stack hero-avatars">
