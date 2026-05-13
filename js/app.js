@@ -1484,6 +1484,7 @@ function KitCarousel() {
                 <img
                   src={src}
                   alt={`Amostra ${i + 1}`}
+                  loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
@@ -1896,6 +1897,7 @@ function Testimonials() {
             <img
               src={testimonials[current].image}
               alt="Depoimento"
+              loading="lazy"
               style={{
                 width: "100%",
                 height: "100%",
@@ -2142,6 +2144,7 @@ function PainValidation() {
           <img
             src="assets/images/busy-mom2.webp"
             alt="Mãe ocupada com filho"
+            loading="lazy"
             style={{
               width: "100%",
               height: "clamp(340px, 45vw, 520px)",
