@@ -801,7 +801,7 @@ function Hero() {
 
           {/* Hero image */}
           <img
-            src="assets/images/hero_image.webp"
+            src="assets/images/hero_final.webp"
             alt="Kit Fala Kids"
             fetchpriority="high"
             style={{

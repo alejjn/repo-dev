@@ -1,0 +1,41 @@
+[33m96bbe58[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31mdev/main[m[33m)[m Update age range to 2-12 across all sections
+[33m1ab4bc3[m Logo filter tuned to #F77D1A orange
+[33m77503f9[m Test orange logo via CSS filter
+[33mf7f7614[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Hero CTA orange, Sobre o kit title purple
+[33maf78479[m Sobre o kit section: cream overlay and dark text
+[33m005b9f3[m Logo white with shadow, sections cream background
+[33mede7351[m CTA hero scrolls to skills section
+[33m7cef002[m Hero redesign: cream bg, new copy, green CTA, TDAH mention
+[33me5a2916[m Update price to R$ 19,90
+[33mf7f1603[m Fix assets path in Vite build
+[33m1df113c[m Fix static assets copy in Vite build
+[33m687a931[m Migrate to Vite build
+[33m255cdee[m Perf: React prod build, hero preload, lazy loading
+[33m36c9c64[m Add fetchpriority high to hero image
+[33ma81e752[m Switch images to WebP format
+[33mfc7a981[m Switch hero image to WebP
+[33m5e69b9b[m Remove logo animation
+[33m52137cf[m Remove hero animations and fix mobile image layout
+[33m63b6f54[m Update hero image
+[33m4d8b440[m Replace hero SVGs with single WebP image
+[33m943ce6b[m Add Microsoft Clarity tracking script
+[33m2a13092[m fix(mobile): corrige layout mobile em 6 seções + assets
+[33mbd4233a[m Fix: Move inline @media queries to CSS classes for WhyItWorks and HowToApply sections
+[33m093cd07[m Fix grid layout breaking other sections
+[33m7462945[m Force single column layout on mobile skills section
+[33me36ca09[m Increase carousel spacing and width on desktop skills section
+[33m87c7a4f[m Hide callout and stack carousel below skills text on mobile
+[33m9dd431e[m first commit
+[33mcc51cff[m Fix mobile background colors - white for non-hero sections, purple for hero
+[33md51e03f[m Fix: Add white background to non-hero sections
+[33m6ba2933[m Remove design tweaks panel, fix page background color to white
+[33m4587470[m NUCLEAR: Remove all absolute positioning on mobile - keep only text content
+[33m65b543c[m NUCLEAR: Remove all absolute positioning on mobile - keep only text content
+[33ma0f271d[m Fix mobile: display product images vertically, stacked, smaller size
+[33m054e842[m FIX: Hide product stack images on mobile to eliminate horizontal overflow
+[33m1626656[m FINAL FIX: Use 100vw to prevent horizontal overflow on mobile
+[33m9b1f8f2[m AGGRESSIVE FIX: Force 100% width everywhere on mobile, remove all max-width constraints
+[33m54ce9a3[m Fix mobile zoom: ensure #root spans full viewport width with 100vw
+[33mdd7ed30[m Fix responsive design: ensure full viewport width at all zoom levels
+[33m95423b7[m Fix: Remove invalid framework from vercel.json
+[33m3302787[m Nova versão do Fala Kids - Landing Page completa
