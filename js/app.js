@@ -806,7 +806,7 @@ function Hero() {
 
           {/* Hero image */}
           <img
-            src="assets/images/hero_image.png"
+            src="assets/images/hero_image.webp"
             alt="Kit Fala Kids"
             style={{
               width: "100%",
