@@ -52,7 +52,7 @@ section {
 }
 
 section:is(.hero) {
-  background: var(--bg, #5b3bff);
+  background: var(--bg, #7751CF);
   color: #fff;
 }
 
@@ -97,7 +97,7 @@ section:is(.hero) {
     max-width: 100% !important;
     padding: 60px 20px !important;
     overflow-x: clip !important;
-    background: var(--bg, #5b3bff) !important;
+    background: var(--bg, #7751CF) !important;
     color: #fff !important;
   }
 
@@ -113,23 +113,10 @@ section:is(.hero) {
   }
 
   section:is(.hero) {
-    background: var(--bg, #5b3bff) !important;
+    background: var(--bg, #7751CF) !important;
     color: #fff !important;
   }
 
-  section > div,
-  .hero-inner,
-  .skills-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
-
-  [style*="maxWidth"],
-  [style*="width"] {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
 }
 
 /* ─────────────────────────────────────────────────────
@@ -139,12 +126,13 @@ section:is(.hero) {
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  padding: 120px clamp(24px, 6vw, 96px);
+  height: 100vh;
+  min-height: 620px;
+  padding: clamp(70px, 8vh, 90px) clamp(24px, 6vw, 96px);
   overflow: hidden;
   overflow-x: hidden;
-  overflow-y: auto;
-  background: var(--bg, #5b3bff);
+  overflow-y: hidden;
+  background: var(--bg, #7751CF);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -211,29 +199,29 @@ h1.headline {
   font-family: "Nunito", sans-serif;
   font-weight: 900;
   color: #fff;
-  font-size: clamp(48px, 6.5vw, 84px);
+  font-size: clamp(36px, 4.8vw, 64px);
   line-height: 1.05;
   letter-spacing: -0.01em;
-  margin: 0 0 32px;
+  margin: 0 0 20px;
   max-width: 620px;
   text-wrap: balance;
 }
 
 .lede {
   color: rgba(255, 255, 255, 0.82);
-  font-size: 18px;
-  line-height: 1.65;
+  font-size: 17px;
+  line-height: 1.55;
   max-width: 580px;
-  margin: 0 0 40px;
+  margin: 0 0 24px;
   font-weight: 500;
 }
 
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   background: #fff;
-  color: #3a1f8c;
+  color: #7751CF;
   border: 0;
   border-radius: 999px;
   padding: 22px 42px;
@@ -244,13 +232,14 @@ h1.headline {
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.35);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
 }
 
 .cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 22px 40px -12px rgba(0, 0, 0, 0.45);
-  background: #fff8cf;
+  background: #F77D1A;
+  color: #fff;
 }
 
 .cta:active {
@@ -258,22 +247,19 @@ h1.headline {
 }
 
 .cta .arrow {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #3a1f8c;
-  color: #fff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
 }
 
 /* Right column: stack */
 .stack-wrap {
   position: relative;
-  height: 700px;
-  min-height: 650px;
+  height: clamp(380px, 55vh, 520px);
+  min-height: unset;
 }
 
 .stack {
@@ -433,11 +419,13 @@ h1.headline {
 }
 
 .avatar-stack .avatar {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  border: 2px solid #5b3bff;
+  border: none;
   margin-left: -10px;
+  object-fit: cover;
+  display: block;
 }
 
 .avatar-stack .avatar:first-child {
@@ -511,7 +499,7 @@ h1.headline {
 .skills h2 {
   font-family: "Nunito", sans-serif;
   font-weight: 900;
-  color: #5b3bff;
+  color: #7751CF;
   font-size: clamp(32px, 3.4vw, 48px);
   line-height: 1.05;
   letter-spacing: -0.01em;
@@ -562,7 +550,7 @@ h1.headline {
 
 .callout {
   background: #eaf3ff;
-  border-left: 4px solid #5b3bff;
+  border-left: 4px solid #7751CF;
   border-radius: 10px;
   padding: 20px 22px;
   max-width: 580px;
@@ -623,7 +611,7 @@ h1.headline {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #5b3bff;
+  color: #7751CF;
   z-index: 1;
   box-shadow: 0 10px 24px -8px rgba(91, 59, 255, 0.35);
 }
@@ -785,6 +773,151 @@ h1.headline {
 }
 
 /* ─────────────────────────────────────────────────────
+   HERO — MOBILE LAYOUT (logo → books → text → CTAs)
+   ───────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Collapse hero into a single flex column */
+  .hero-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+  }
+
+  /* Dissolve the .left wrapper so its children participate
+     directly in the .hero-inner flex flow */
+  .left {
+    display: contents !important;
+  }
+
+  /* 1 — Logo: smaller, centered */
+  .hero-logo {
+    order: 1;
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 4px !important;
+  }
+  .hero-logo img {
+    max-width: 130px !important;
+  }
+
+  /* 2 — Floating books: show below logo */
+  .stack-wrap {
+    display: block !important; /* override the 980px display:none */
+    order: 2;
+    position: relative !important;
+    height: 200px !important;
+    width: 100% !important;
+    margin: 8px 0 16px !important;
+    flex-shrink: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* 3-6 — Rest of hero text */
+  .hero-headline {
+    order: 3;
+    width: 100% !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .hero-lede {
+    order: 4;
+    width: 100% !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  /* CTAs: both buttons centered */
+  .hero-ctas {
+    order: 5;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .hero-avatars {
+    order: 6;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+   PAIN SECTION — MOBILE REORDER (header → image → body)
+   ───────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .pain-grid {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .pain-header { order: 1; }
+  .pain-image  { order: 2; }
+  .pain-body   { order: 3; }
+
+  /* Constrain image height on narrow screens */
+  .pain-image img {
+    height: clamp(220px, 55vw, 340px) !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+   SKILLS SECTION — PLAY BUTTON (keep circle, not oval)
+   The aggressive [style*="width"] rule was the culprit;
+   now removed. Extra guard for safety.
+   ───────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .play-btn-circle {
+    width: 80px !important;
+    height: 80px !important;
+    min-width: 80px !important;
+    min-height: 80px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+   NAV BUTTONS — keep circular on all screen sizes
+   ───────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .nav-btn-circle {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+   HOWTOAPPLY — icon box: keep square on mobile
+   ───────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .step-icon-box {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    border-radius: 16px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
+   TESTIMONIALS — image height + layout on mobile
+   ───────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .testimonials-image-wrap {
+    height: 300px !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────
    PRODUCT CARD — BONUS DECK (3 bonus images)
    The pixel-offset absolute layout overflows mobile.
    Re-layout to percent-based positions and shrink images.
@@ -891,7 +1024,7 @@ h1.headline {
   left: 5%;
   right: 5%;
   height: 3px;
-  background: linear-gradient(90deg, #5b3bff 0%, #ffb6d9 50%, #ffd166 100%);
+  background: linear-gradient(90deg, #7751CF 0%, #ffb6d9 50%, #ffd166 100%);
   display: none;
 }
 
@@ -908,14 +1041,10 @@ h1.headline {
    ───────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
-  section,
-  section > div,
-  section > div > div {
+  section {
     max-width: 100% !important;
   }
 
-  /* Any element that explicitly uses fixed pixel widths bigger than
-     the viewport — fall back to fluid widths. */
   img {
     max-width: 100%;
   }

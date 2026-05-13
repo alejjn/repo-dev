@@ -7,7 +7,7 @@ const { useState } = React;
 
 /* ────────── Palette & Copy Variants ────────── */
 const PALETTES = [
-  ["#5b3bff", "#ffb6d9"], // indigo / pink (default)
+  ["#7751CF", "#ffb6d9"], // indigo / pink (default)
   ["#2a1380", "#ffd166"], // deep grape / sunny
   ["#0e7d6a", "#ffc7e8"], // forest teal / blossom
   ["#e85d75", "#fff1a8"], // tomato / cream
@@ -18,10 +18,9 @@ const COPY = {
     script1: "Fala",
     script2: "Kids",
     superLabel: "kit",
-    headline:
-      "Descubra a técnica que ensina as crianças a ler até 5 vezes mais rápido, sem pressão!",
-    lede: "Com apenas 10 minutos por dia. Ideal para crianças de 2 a 12 anos, no ritmo natural de cada uma. Mesmo que ainda não reconheça letras ou sons. Funciona também com crianças com TDAH, Autismo ou dificuldades de foco. Com o Kit Fala Kids, seu filho aprende a ler de forma divertida, simples e eficaz, direto de casa!",
-    cta: "Quero meu pequeno lendo rápido!",
+    headline: "Seu filho alfabetizado até 5x mais rápido.",
+    lede: "Fala Kids é a melhor forma de aprender brincando",
+    cta: "Comprar agora",
   },
   short: {
     script1: "Fala",
@@ -47,7 +46,7 @@ function FalaKidsLogo() {
     <img
       src="assets/images/fala-kids-new-logo-white.png"
       alt="Fala Kids Logo"
-      style={{ maxWidth: "280px", height: "auto", display: "block" }}
+      style={{ maxWidth: "280px", height: "auto", display: "block", animation: "floaty 3.5s ease-in-out infinite", animationDelay: "-0.7s" }}
     />
   );
 }
@@ -88,7 +87,22 @@ function Sparkle({ size = 32, color = "#7feaff" }) {
   );
 }
 
-function SquiggleArrow({ color = "#ff9a3c" }) {
+function CheckCircle({ size = 22, bg = "#7751CF" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 22 22" fill="none" style={{ flexShrink: 0 }}>
+      <circle cx="11" cy="11" r="11" fill={bg} />
+      <polyline
+        points="6 11.5 9.5 15 16 8"
+        stroke="#fff"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function SquiggleArrow({ color = "#F77D1A" }) {
   return (
     <svg viewBox="0 0 220 220" width="220" height="220" fill="none">
       <path
@@ -521,7 +535,7 @@ function CoverIllustration() {
           width: 130,
           height: 130,
           borderRadius: "50%",
-          background: "radial-gradient(circle at 30% 30%, #ffd166, #ff9a3c 70%)",
+          background: "radial-gradient(circle at 30% 30%, #ffd166, #F77D1A 70%)",
           position: "relative",
           overflow: "hidden",
         }}
@@ -645,7 +659,7 @@ function CoverLinguagem() {
           width: 200,
           height: 200,
           borderRadius: "50%",
-          background: "#5b3bff",
+          background: "#7751CF",
         }}
       />
       <div
@@ -717,30 +731,45 @@ function Hero() {
       <div className="hero-inner">
         {/* LEFT */}
         <div className="left">
-          <div style={{ marginBottom: 24 }}>
+          <div style={{ marginBottom: 24 }} className="hero-logo">
             <FalaKidsLogo />
           </div>
 
-          <h1 className="headline">{c.headline}</h1>
-          <p className="lede">{c.lede}</p>
+          <h1 className="headline hero-headline">
+            Seu filho alfabetizado até{" "}
+            <span style={{ color: "#F77D1A" }}>5x mais rápido.</span>
+          </h1>
+          <p className="lede hero-lede">{c.lede}</p>
 
-          <button
-            className="cta"
-            onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
-          >
-            {c.cta}
-            <span className="arrow">→</span>
-          </button>
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }} className="hero-ctas">
+            <button
+              className="cta"
+              onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
+            >
+              {c.cta}
+              <span className="arrow">›</span>
+            </button>
+            <a
+              href="#skills"
+              className="cta-secondary"
+            >
+              Saber mais
+            </a>
+          </div>
 
-          <div className="avatar-stack">
+          <div className="avatar-stack hero-avatars">
             <div>
-              {["#ffd166", "#ff7eb0", "#7feaff", "#a5f3a3"].map((col, i) => (
-                <div
+              {[
+                "https://i.pravatar.cc/60?img=5",
+                "https://i.pravatar.cc/60?img=26",
+                "https://i.pravatar.cc/60?img=48",
+                "https://i.pravatar.cc/60?img=17",
+              ].map((src, i) => (
+                <img
                   key={i}
+                  src={src}
+                  alt="Família Fala Kids"
                   className="avatar"
-                  style={{
-                    background: col,
-                  }}
                 />
               ))}
             </div>
@@ -749,74 +778,107 @@ function Hero() {
         </div>
 
         {/* RIGHT */}
-        <div className="stack-wrap">
-          {/* Decorations: stars + squiggle */}
+        <div className="stack-wrap hero-books">
+          <style>{`
+            @keyframes floatBook1 {
+              0%, 100% { transform: rotate(-15deg) translateY(0px); }
+              50% { transform: rotate(-15deg) translateY(-14px); }
+            }
+            @keyframes floatBook2 {
+              0%, 100% { transform: rotate(0deg) translateY(0px); }
+              50% { transform: rotate(0deg) translateY(-20px); }
+            }
+            @keyframes floatBook3 {
+              0%, 100% { transform: rotate(15deg) translateY(0px); }
+              50% { transform: rotate(15deg) translateY(-10px); }
+            }
+            @keyframes fadeUp {
+              from { opacity: 0; transform: translateY(32px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to   { opacity: 1; }
+            }
+            @keyframes slideInRight {
+              from { opacity: 0; transform: translateX(48px); }
+              to   { opacity: 1; transform: translateX(0); }
+            }
+            .hero-logo    { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
+            .hero-headline{ animation: fadeUp 0.6s ease both; animation-delay: 0.25s; }
+            .hero-lede    { animation: fadeUp 0.6s ease both; animation-delay: 0.4s; }
+            .hero-ctas    { animation: fadeUp 0.6s ease both; animation-delay: 0.55s; }
+            .hero-avatars { animation: fadeUp 0.6s ease both; animation-delay: 0.7s; }
+            .hero-books   { animation: slideInRight 0.7s ease both; animation-delay: 0.3s; }
+            .pain-text    { animation: fadeUp 0.6s ease both; animation-delay: 0.15s; }
+            .pain-image   { animation: fadeIn 0.8s ease both; animation-delay: 0.35s; }
+            .cta-secondary {
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              background: transparent;
+              color: #fff;
+              border: 2px solid rgba(255,255,255,0.6);
+              border-radius: 999px;
+              padding: 20px 36px;
+              font-family: "Nunito", sans-serif;
+              font-weight: 800;
+              font-size: 15px;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              cursor: pointer;
+              text-decoration: none;
+              transition: all 0.18s ease;
+            }
+            .cta-secondary:hover {
+              background: rgba(255,255,255,0.12);
+              border-color: #fff;
+            }
+          `}</style>
+
+          {/* Decorations: stars */}
           <div className="deco" style={{ top: -10, left: 120, "--r": "-10deg" }}>
             <StarOutline size={90} color={accent} stroke={4} />
           </div>
           <div className="deco float" style={{ top: 50, left: 30, "--r": "6deg" }}>
             <StarSolid size={40} color="#fff" />
           </div>
-          {decoCount >= 1 && (
-            <div
-              className="deco float"
-              style={{
-                top: 120,
-                left: 80,
-                "--r": "-4deg",
-                animationDelay: "-1.2s",
-              }}
-            >
-              <StarOutline size={52} color="#ffd166" stroke={3.2} />
-            </div>
-          )}
-          <div className="deco squiggle" style={{ top: -20, right: -10 }}>
-            <SquiggleArrow color="#ff9a3c" />
+          <div className="deco float" style={{ top: 120, left: 80, "--r": "-4deg", animationDelay: "-1.2s" }}>
+            <StarOutline size={52} color="#ffd166" stroke={3.2} />
           </div>
-          <div className="deco float" style={{ bottom: 30, right: -20, "--r": "4deg" }}>
-            <Sparkle size={72} color="#7feaff" />
-          </div>
-          {decoCount >= 2 && (
-            <>
-              <div
-                className="deco float"
-                style={{
-                  bottom: 120,
-                  left: -10,
-                  "--r": "-6deg",
-                  animationDelay: "-2s",
-                }}
-              >
-                <Sparkle size={48} color="#ffd166" />
-              </div>
-              <div
-                className="deco float"
-                style={{
-                  top: 200,
-                  right: 60,
-                  "--r": "3deg",
-                  animationDelay: "-3s",
-                }}
-              >
-                <StarSolid size={32} color="#ffb6d9" />
-              </div>
-            </>
-          )}
 
-          {/* Product images stack — 3 SVG images (deck layout) */}
+          {/* Sparkles around the books */}
+          <div className="deco float" style={{ top: 60, right: 20, "--r": "4deg", animationDelay: "-0.8s" }}>
+            <Sparkle size={40} color="#7feaff" />
+          </div>
+          <div className="deco float" style={{ top: 200, right: 60, "--r": "2deg", animationDelay: "-1.5s" }}>
+            <Sparkle size={28} color="#7feaff" />
+          </div>
+          <div className="deco float" style={{ bottom: 80, right: 30, "--r": "-3deg", animationDelay: "-2.2s" }}>
+            <Sparkle size={36} color="#7feaff" />
+          </div>
+          <div className="deco float" style={{ bottom: 140, left: 60, "--r": "-6deg", animationDelay: "-2s" }}>
+            <Sparkle size={32} color="#ffd166" />
+          </div>
+          <div className="deco float" style={{ top: 300, left: 20, "--r": "3deg", animationDelay: "-3s" }}>
+            <Sparkle size={24} color="#ffb6d9" />
+          </div>
+
+          {/* Product images — each floats independently */}
           <img
             src="assets/images/cover-art-monte-palavra.svg"
             alt="Monte a Palavra"
             style={{
-              width: 240,
-              height: 350,
+              width: 210,
+              height: 305,
               position: "absolute",
-              left: -20,
-              top: 60,
-              transform: "rotate(-15deg)",
+              left: -10,
+              top: 80,
               objectFit: "contain",
               zIndex: 1,
+              borderRadius: 16,
               filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25))",
+              animation: "floatBook1 3.8s ease-in-out infinite",
             }}
           />
 
@@ -824,15 +886,17 @@ function Hero() {
             src="assets/images/cover-art-fala-kids.svg"
             alt="Fala Kids"
             style={{
-              width: 300,
-              height: 430,
+              width: 265,
+              height: 385,
               position: "absolute",
-              left: 270,
-              top: 0,
-              transform: "rotate(0deg)",
+              left: 220,
+              top: 20,
               objectFit: "contain",
               zIndex: 3,
+              borderRadius: 16,
               filter: "drop-shadow(0 28px 56px rgba(0, 0, 0, 0.35))",
+              animation: "floatBook2 4.5s ease-in-out infinite",
+              animationDelay: "-1s",
             }}
           />
 
@@ -840,15 +904,17 @@ function Hero() {
             src="assets/images/cover-art-colorir-textura.svg"
             alt="Colorir e Textura"
             style={{
-              width: 240,
-              height: 350,
+              width: 210,
+              height: 305,
               position: "absolute",
-              left: 600,
-              top: 60,
-              transform: "rotate(15deg)",
+              left: 510,
+              top: 80,
               objectFit: "contain",
               zIndex: 1,
+              borderRadius: 16,
               filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25))",
+              animation: "floatBook3 5.2s ease-in-out infinite",
+              animationDelay: "-2.5s",
             }}
           />
         </div>
@@ -974,7 +1040,7 @@ function MiniPoster() {
       style={{
         width: "100%",
         height: "100%",
-        background: "linear-gradient(180deg,#ffd166,#ff9a3c)",
+        background: "linear-gradient(180deg,#ffd166,#F77D1A)",
         padding: "14px 12px",
         color: "#1c0f3f",
         position: "relative",
@@ -1070,7 +1136,7 @@ function MiniFluencia() {
         position: "relative",
       }}
     >
-      <div className="small" style={{ color: "#5b3bff", fontSize: 9 }}>
+      <div className="small" style={{ color: "#7751CF", fontSize: 9 }}>
         FALA KIDS
       </div>
       <div style={{ fontWeight: 900, fontSize: 15, marginTop: 4, lineHeight: 1, color: "#3a1f8c" }}>
@@ -1084,7 +1150,7 @@ function MiniFluencia() {
       <div style={{ marginTop: 12 }}>
         {[1, 2, 3, 4].map((i) => (
           <div key={i} style={{ display: "flex", gap: 4, marginBottom: 5 }}>
-            <div style={{ width: `${30 + i * 8}%`, height: 6, background: "#5b3bff", borderRadius: 3 }} />
+            <div style={{ width: `${30 + i * 8}%`, height: 6, background: "#7751CF", borderRadius: 3 }} />
             <div style={{ width: `${15 + i * 4}%`, height: 6, background: "#ffd166", borderRadius: 3 }} />
           </div>
         ))}
@@ -1095,7 +1161,7 @@ function MiniFluencia() {
           bottom: 10,
           right: 10,
           fontFamily: "'Caveat Brush',cursive",
-          color: "#5b3bff",
+          color: "#7751CF",
           fontSize: 22,
           transform: "rotate(-8deg)",
         }}
@@ -1107,141 +1173,466 @@ function MiniFluencia() {
 }
 
 function Skills() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  return (
+    <section id="skills" style={{
+      background: "#fff",
+      padding: "100px clamp(24px, 6vw, 96px)",
+    }}>
+      <div style={{
+        maxWidth: 1200,
+        margin: "0 auto",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "clamp(40px, 6vw, 80px)",
+        alignItems: "center",
+      }} className="skills-layout">
 
-  const products = [
-    { title: "Amostra 1", image: "assets/images/produto_amostra_1.png" },
-    { title: "Amostra 2", image: "assets/images/produto_amostra_2.png" },
-    { title: "Amostra 3", image: "assets/images/produto_amostra_3.png" },
-    { title: "Amostra 4", image: "assets/images/produto_amostra_4.png" },
-    { title: "Amostra 5", image: "assets/images/produto_amostra_5.png" },
+        {/* LEFT — Video */}
+        {(() => {
+          const [playing, setPlaying] = React.useState(false);
+          const videoRef = React.useRef(null);
+
+          const handlePlay = () => {
+            setPlaying(true);
+            videoRef.current.play();
+          };
+
+          return (
+            <div style={{
+              borderRadius: 24,
+              overflow: "hidden",
+              boxShadow: "0 24px 60px rgba(0,0,0,0.12)",
+              position: "relative",
+              lineHeight: 0,
+              cursor: playing ? "default" : "pointer",
+            }} onClick={!playing ? handlePlay : undefined}>
+
+              <video
+                ref={videoRef}
+                src="assets/videos/criativo-fala-kids-1.mp4"
+                poster="assets/images/juba-do-leao.png"
+                playsInline
+                controls={playing}
+                style={{
+                  width: "110%",
+                  marginLeft: "-5%",
+                  display: "block",
+                  objectFit: "cover",
+                }}
+              />
+
+              {/* Custom play button overlay */}
+              {!playing && (
+                <div style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "rgba(0,0,0,0.12)",
+                }}>
+                  <div className="play-btn-circle" style={{
+                    width: 80,
+                    height: 80,
+                    minWidth: 80,
+                    minHeight: 80,
+                    borderRadius: "50%",
+                    background: "#F77D1A",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 8px 32px rgba(247,125,26,0.55)",
+                    transition: "transform 0.18s ease, box-shadow 0.18s ease",
+                    flexShrink: 0,
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = "scale(1.1)";
+                    e.currentTarget.style.boxShadow = "0 12px 40px rgba(247,125,26,0.7)";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.boxShadow = "0 8px 32px rgba(247,125,26,0.55)";
+                  }}>
+                    {/* Triangle play icon */}
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
+        {/* RIGHT — Text */}
+        <div>
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 700,
+            fontSize: 13,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#F77D1A",
+            margin: "0 0 12px",
+          }}>
+            O que seu filho aprende
+          </p>
+
+          <h2 style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 900,
+            color: "#7751CF",
+            fontSize: "clamp(32px, 3.6vw, 50px)",
+            lineHeight: 1.08,
+            margin: "0 0 16px",
+          }}>
+            Desenvolva habilidades
+          </h2>
+
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: "clamp(15px, 1.6vw, 17px)",
+            fontWeight: 500,
+            color: "#6b6b8a",
+            margin: "0 0 32px",
+            lineHeight: 1.6,
+          }}>
+            Com o Kit Completo Fala Kids, seu filho vai trabalhar:
+          </p>
+
+          <ul style={{
+            listStyle: "none",
+            padding: 0,
+            margin: "0 0 32px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 18,
+          }}>
+            {FK_SKILLS.map((s, i) => (
+              <li key={i} style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                fontFamily: "'Nunito', sans-serif",
+                fontSize: "clamp(14px, 1.5vw, 16px)",
+                fontWeight: 600,
+                color: "#1c0f3f",
+              }}>
+                <CheckCircle size={22} bg="#7751CF" />
+                {s}
+              </li>
+            ))}
+          </ul>
+
+          <div style={{
+            background: "#f4f0ff",
+            borderLeft: "4px solid #7751CF",
+            borderRadius: 10,
+            padding: "18px 22px",
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: "clamp(13px, 1.4vw, 15px)",
+            fontWeight: 600,
+            color: "#2a1d6e",
+            lineHeight: 1.6,
+          }}>
+            Perfeito para crianças de <strong>3 a 7 anos</strong> — apenas <strong>20 minutos por dia</strong> é suficiente.
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .skills-layout { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+/* ────────── Kit Overview Section ────────── */
+function KitOverview() {
+  const items = [
+    { label: "+170 Atividades com Grafismo Fonético", highlight: false },
+    { label: "Leitura fluida em 4–6 semanas", highlight: false },
+    { label: "Método Fonético comprovado", highlight: false },
+    { label: "Fala Kids — Volume 1 + Volume 2", highlight: false },
+    { label: "Bônus 1: Colorir com Textura — sensorial e criativo", bonus: true },
+    { label: "Bônus 2: Monte a Palavra — sílabas e lógica", bonus: true },
+    { label: "Bônus 3: Monte seu Pôster Gigante", bonus: true },
   ];
 
-  const nextProduct = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length);
-  };
+  return (
+    <section style={{
+      position: "relative",
+      padding: "120px clamp(24px, 6vw, 96px)",
+      overflow: "hidden",
+      color: "#fff",
+    }}>
+      {/* Background image */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: "url('assets/images/fala-kids-art.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        filter: "grayscale(100%)",
+        zIndex: 0,
+      }} />
+      {/* Dark overlay for readability */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "linear-gradient(135deg, rgba(30, 10, 80, 0.88) 0%, rgba(119, 81, 207, 0.75) 100%)",
+        zIndex: 1,
+      }} />
 
-  const prevProduct = () => {
-    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+      {/* Content */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
+        maxWidth: 860,
+        margin: "0 auto",
+      }}>
+        {/* Header */}
+        <div style={{ marginBottom: 56, textAlign: "center" }}>
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 700,
+            fontSize: 13,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#F77D1A",
+            margin: "0 0 12px",
+          }}>
+            Kit Completo
+          </p>
+          <h2 style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 900,
+            fontSize: "clamp(36px, 5vw, 60px)",
+            lineHeight: 1.08,
+            margin: "0 0 20px",
+            color: "#fff",
+          }}>
+            Sobre o kit
+          </h2>
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: "clamp(16px, 1.8vw, 19px)",
+            fontWeight: 500,
+            color: "rgba(255,255,255,0.78)",
+            maxWidth: 580,
+            margin: "0 auto",
+            lineHeight: 1.65,
+          }}>
+            Tudo que você precisa para alfabetizar seu filho em casa — com método, progressão e muito afeto.
+          </p>
+        </div>
+
+        {/* Item list */}
+        <ul style={{
+          listStyle: "none",
+          margin: 0,
+          padding: 0,
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+        }}>
+          {items.map((item, i) => (
+            <li key={i} style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 18,
+              background: "#fff",
+              border: item.bonus
+                ? "2px solid #F77D1A"
+                : "2px solid transparent",
+              borderRadius: 14,
+              padding: "18px 24px",
+              backdropFilter: "blur(6px)",
+            }}>
+              <CheckCircle size={28} bg={item.bonus ? "#F77D1A" : "#7751CF"} />
+              <span style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontSize: "clamp(15px, 1.6vw, 17px)",
+                fontWeight: item.bonus ? 700 : 600,
+                color: item.bonus ? "#F77D1A" : "#1c0f3f",
+                lineHeight: 1.4,
+              }}>
+                {item.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA */}
+        <div style={{ textAlign: "center", marginTop: 56 }}>
+          <button
+            onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 12,
+              background: "#F77D1A",
+              color: "#fff",
+              border: 0,
+              borderRadius: 999,
+              padding: "20px 48px",
+              fontFamily: "'Nunito', sans-serif",
+              fontWeight: 900,
+              fontSize: 16,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              cursor: "pointer",
+              boxShadow: "0 14px 32px -8px rgba(247, 125, 26, 0.5)",
+              transition: "all 0.18s ease",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 20px 40px -8px rgba(247, 125, 26, 0.6)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 14px 32px -8px rgba(247, 125, 26, 0.5)"; }}
+          >
+            Quero o kit completo ›
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────── Kit Carousel Section ────────── */
+function KitCarousel() {
+  const [current, setCurrent] = React.useState(0);
+  const images = [
+    "assets/images/produto_amostra_2.png",
+    "assets/images/produto_amostra_1.png",
+    "assets/images/produto_amostra_4.png",
+    "assets/images/produto_amostra_5.png",
+    "assets/images/pato.png",
+    "assets/images/fada.png",
+  ];
+
+  const prev = () => setCurrent(i => (i - 1 + images.length) % images.length);
+  const next = () => setCurrent(i => (i + 1) % images.length);
+
+  const getPos = (i) => {
+    const total = images.length;
+    let offset = i - current;
+    if (offset > Math.floor(total / 2)) offset -= total;
+    if (offset < -Math.floor(total / 2)) offset += total;
+    return offset;
   };
 
   return (
-    <section className="skills">
-      <div className="skills-inner" style={{
-        maxWidth: 1440,
-        margin: "0 auto",
-        padding: "0 clamp(24px, 6vw, 96px)"
-      }}>
-        <div className="skills-grid" style={{
-          display: "grid",
-          gridTemplateColumns: "0.9fr 1.2fr",
-          gap: 80,
-          alignItems: "center",
-          maxWidth: "100%"
-        }}>
-          <div style={{ maxWidth: 620 }}>
-            <h2>Desenvolva todas as habilidades da alfabetização infantil</h2>
-            <p className="kicker">Com o Kit Completo Fala Kids, seu filho vai trabalhar:</p>
-            <ul className="skill-list">
-              {FK_SKILLS.map((s, i) => (
-                <li key={i}>
-                  <span className="check">✓</span>
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="callout">
-              Perfeito para pais e educadores de crianças de <strong>3 a 7 anos</strong> que buscam o método fonético comprovado — usado nos países com maior índice de alfabetização do mundo. <strong>20 minutos por dia</strong> é suficiente.
-            </div>
-          </div>
+    <section style={{ background: "#f9f7ff", padding: "80px clamp(24px, 6vw, 96px)", overflow: "hidden" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
-          <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 28
-          }}>
-          {/* Card Grande - Flutuante */}
-          <div
-            style={{
-              width: "clamp(280px, 100%, 480px)",
-              aspectRatio: "4 / 5",
-              borderRadius: 16,
-              overflow: "hidden",
-              background: `url('${products[currentIndex].image}') center/contain no-repeat transparent`,
-              boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
-              transition: "opacity 0.4s ease-in-out"
-            }}
-          />
-
-          {/* Navegação Minimalista */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 20,
-            justifyContent: "center"
-          }}>
-            <button
-              onClick={prevProduct}
-              style={{
-                width: 32,
-                height: 32,
-                borderRadius: "50%",
-                border: "none",
-                background: "rgba(91, 59, 255, 0.08)",
-                color: "#5b3bff",
-                fontSize: 16,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "all 0.3s ease",
-                fontWeight: 600
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(91, 59, 255, 0.15)";
-                e.currentTarget.style.transform = "scale(1.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(91, 59, 255, 0.08)";
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              ‹
-            </button>
-
-            <button
-              onClick={nextProduct}
-              style={{
-                width: 32,
-                height: 32,
-                borderRadius: "50%",
-                border: "none",
-                background: "rgba(91, 59, 255, 0.08)",
-                color: "#5b3bff",
-                fontSize: 16,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "all 0.3s ease",
-                fontWeight: 600
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(91, 59, 255, 0.15)";
-                e.currentTarget.style.transform = "scale(1.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(91, 59, 255, 0.08)";
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              ›
-            </button>
-          </div>
-          </div>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 52 }}>
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 700,
+            fontSize: 13,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#F77D1A",
+            margin: "0 0 10px",
+          }}>Amostras do material</p>
+          <h2 style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 900,
+            color: "#7751CF",
+            fontSize: "clamp(28px, 3.2vw, 42px)",
+            margin: 0,
+            lineHeight: 1.1,
+          }}>Veja o que está dentro do kit</h2>
         </div>
+
+        {/* Carousel track */}
+        <div style={{
+          position: "relative",
+          height: "clamp(360px, 50vw, 560px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          {images.map((src, i) => {
+            const pos = getPos(i);
+            const isCenter = pos === 0;
+            const isAdjacent = Math.abs(pos) === 1;
+            const isHidden = Math.abs(pos) > 1;
+
+            return (
+              <div
+                key={i}
+                onClick={() => !isCenter && setCurrent(i)}
+                style={{
+                  position: "absolute",
+                  width: isCenter ? "clamp(240px, 32vw, 380px)" : "clamp(160px, 22vw, 260px)",
+                  height: isCenter ? "clamp(320px, 44vw, 500px)" : "clamp(220px, 30vw, 360px)",
+                  transform: `translateX(${pos * (isCenter ? 0 : 105)}%) scale(${isCenter ? 1 : 0.82})`,
+                  zIndex: isCenter ? 3 : isAdjacent ? 2 : 1,
+                  opacity: isHidden ? 0 : isAdjacent ? 0.55 : 1,
+                  transition: "all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  cursor: isCenter ? "default" : "pointer",
+                  borderRadius: 20,
+                  overflow: "hidden",
+                  boxShadow: isCenter
+                    ? "0 24px 64px rgba(119,81,207,0.18)"
+                    : "0 8px 24px rgba(0,0,0,0.10)",
+                  flexShrink: 0,
+                }}
+              >
+                <img
+                  src={src}
+                  alt={`Amostra ${i + 1}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Controls */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginTop: 40 }}>
+          <button className="nav-btn-circle" onClick={prev} style={{
+            width: 44, height: 44, minWidth: 44, minHeight: 44, borderRadius: "50%",
+            background: "#fff", border: "2px solid #7751CF",
+            color: "#7751CF", fontSize: 22, fontWeight: 900,
+            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0, transition: "all 0.18s ease", padding: 0,
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = "#7751CF"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = "#7751CF"; }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+
+          {/* Dots */}
+          <div style={{ display: "flex", gap: 8 }}>
+            {images.map((_, i) => (
+              <button key={i} onClick={() => setCurrent(i)} style={{
+                width: current === i ? 28 : 10,
+                height: 10, borderRadius: 5,
+                background: current === i ? "#7751CF" : "#d4c6ff",
+                border: "none", cursor: "pointer",
+                transition: "all 0.3s ease", padding: 0,
+              }} />
+            ))}
+          </div>
+
+          <button className="nav-btn-circle" onClick={next} style={{
+            width: 44, height: 44, minWidth: 44, minHeight: 44, borderRadius: "50%",
+            background: "#fff", border: "2px solid #7751CF",
+            color: "#7751CF", fontSize: 22, fontWeight: 900,
+            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0, transition: "all 0.18s ease", padding: 0,
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = "#7751CF"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = "#7751CF"; }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
       </div>
     </section>
   );
@@ -1276,7 +1667,7 @@ function WhyItWorks() {
             style={{
               fontFamily: "'Nunito', sans-serif",
               fontWeight: 900,
-              color: "#5b3bff",
+              color: "#7751CF",
               fontSize: "clamp(32px, 3.4vw, 48px)",
               lineHeight: 1.05,
               margin: "0 0 16px",
@@ -1365,174 +1756,177 @@ function WhyItWorks() {
 function HowToApply() {
   const steps = [
     {
-      num: "1",
-      title: "Imprima",
-      desc: "Baixe, imprima quantas vezes quiser. Organize com nosso guia de progresso.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7751CF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+        </svg>
+      ),
+      num: "01",
+      title: "Fácil de usar",
+      desc: "Baixe e imprima em casa. Material pronto para usar — sem preparação, sem complicação.",
     },
     {
-      num: "2",
-      title: "Sente com seu filho",
-      desc: "15-20 minutos por dia de atividade interativa, leve e sem pressão.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F77D1A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      ),
+      num: "02",
+      title: "Sessões rápidas",
+      desc: "Apenas 15–20 minutos por dia. Atividades leves, interativas e sem pressão.",
     },
     {
-      num: "3",
-      title: "Acompanhe",
-      desc: "Semana a semana veja seu filho reconhecer letras, formar sílabas e ler palavras.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7751CF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+        </svg>
+      ),
+      num: "03",
+      title: "Evolução garantida",
+      desc: "Semana a semana, veja seu filho reconhecer letras, formar sílabas e ler palavras.",
     },
   ];
 
   return (
-    <section style={{ background: "#fff", padding: "100px clamp(24px, 6vw, 96px)" }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto" }}>
+    <section style={{
+      position: "relative",
+      padding: "100px clamp(24px, 6vw, 96px)",
+      overflow: "hidden",
+    }}>
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "url('assets/images/como-alfabetizar-letrando.jpg')", backgroundSize: "cover", backgroundPosition: "center", filter: "grayscale(100%)", zIndex: 0 }} />
+      <div style={{ position: "absolute", inset: 0, background: "rgba(244, 240, 255, 0.93)", zIndex: 1 }} />
+      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 }}>
+
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 80 }}>
-          <h2
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 900,
-              color: "#1c0f3f",
-              fontSize: "clamp(32px, 3.4vw, 48px)",
-              lineHeight: 1.05,
-              margin: "0 0 16px",
-              maxWidth: 700,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
+        <div style={{ textAlign: "center", marginBottom: 72 }}>
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 700,
+            fontSize: 13,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "#F77D1A",
+            margin: "0 0 12px",
+          }}>Como funciona</p>
+          <h2 style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 900,
+            color: "#7751CF",
+            fontSize: "clamp(32px, 3.6vw, 50px)",
+            lineHeight: 1.08,
+            margin: "0 0 16px",
+          }}>
             Simples de aplicar na rotina
           </h2>
-          <p
-            style={{
-              color: "#7e6cc9",
-              fontSize: 18,
-              fontWeight: 600,
-              margin: 0,
-              maxWidth: 700,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            Uma rotina educativa leve, prática e eficiente para pais e crianças.
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: "clamp(15px, 1.6vw, 18px)",
+            fontWeight: 500,
+            color: "#6b6b8a",
+            margin: 0,
+            maxWidth: 520,
+            marginLeft: "auto",
+            marginRight: "auto",
+            lineHeight: 1.65,
+          }}>
+            15 minutos por dia é tudo que você precisa para ver seu filho evoluir semana a semana.
           </p>
         </div>
 
-        {/* Steps Timeline */}
-        <div className="how-to-apply-grid">
-          {/* Connecting line (desktop only) */}
-          <div className="how-to-apply-line" />
-
+        {/* Steps */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "clamp(24px, 4vw, 48px)",
+        }} className="how-to-apply-grid">
           {steps.map((step, i) => (
-            <div key={i} style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
-              {/* Number Circle */}
-              <div
-                style={{
-                  width: 120,
-                  height: 120,
-                  borderRadius: "50%",
-                  background: `linear-gradient(135deg, ${
-                    i === 0 ? "#5b3bff" : i === 1 ? "#ff7eb0" : "#ffd166"
-                  }, ${i === 0 ? "#ffb6d9" : i === 1 ? "#ffc7e8" : "#fff1a8"})`,
+            <div key={i} style={{
+              background: "#fff",
+              borderRadius: 20,
+              padding: "36px 28px",
+              boxShadow: "0 4px 20px rgba(119,81,207,0.08)",
+              display: "flex",
+              flexDirection: "column",
+              gap: 20,
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(119,81,207,0.15)"; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(119,81,207,0.08)"; }}
+            >
+              {/* Step number + icon row */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 900,
+                  fontSize: 48,
+                  color: i % 2 === 0 ? "#ede6ff" : "#ffe8d6",
+                  lineHeight: 1,
+                }}>{step.num}</span>
+                <div className="step-icon-box" style={{
+                  width: 56,
+                  height: 56,
+                  minWidth: 56,
+                  minHeight: 56,
+                  borderRadius: 16,
+                  flexShrink: 0,
+                  background: i % 2 === 0 ? "#f4f0ff" : "#fff4ec",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: 24,
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  boxShadow: `0 12px 30px -10px ${
-                    i === 0 ? "rgba(91, 59, 255, 0.3)" : i === 1 ? "rgba(255, 126, 176, 0.3)" : "rgba(255, 209, 102, 0.3)"
-                  }`,
-                  transition: "all 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.1)";
-                  e.currentTarget.style.boxShadow = `0 16px 40px -8px ${
-                    i === 0 ? "rgba(91, 59, 255, 0.4)" : i === 1 ? "rgba(255, 126, 176, 0.4)" : "rgba(255, 209, 102, 0.4)"
-                  }`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = `0 12px 30px -10px ${
-                    i === 0 ? "rgba(91, 59, 255, 0.3)" : i === 1 ? "rgba(255, 126, 176, 0.3)" : "rgba(255, 209, 102, 0.3)"
-                  }`;
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: 56,
-                    fontWeight: 900,
-                    color: "#fff",
-                    fontFamily: "'Nunito', sans-serif",
-                  }}
-                >
-                  {step.num}
-                </span>
+                }}>{step.icon}</div>
               </div>
 
-              {/* Title */}
-              <h3
-                style={{
+              <div>
+                <h3 style={{
                   fontFamily: "'Nunito', sans-serif",
                   fontWeight: 900,
                   color: "#1c0f3f",
-                  fontSize: 22,
-                  margin: "0 0 12px",
+                  fontSize: 20,
+                  margin: "0 0 10px",
                   lineHeight: 1.2,
-                }}
-              >
-                {step.title}
-              </h3>
-
-              {/* Description */}
-              <p
-                style={{
-                  color: "#666",
+                }}>{step.title}</h3>
+                <p style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  color: "#6b6b8a",
                   fontSize: 15,
-                  lineHeight: 1.6,
+                  lineHeight: 1.65,
                   margin: 0,
                   fontWeight: 500,
-                }}
-              >
-                {step.desc}
-              </p>
+                }}>{step.desc}</p>
+              </div>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div style={{ textAlign: "center", marginTop: 80 }}>
+        <div style={{ textAlign: "center", marginTop: 64 }}>
           <button
+            onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: 12,
-              background: "#5b3bff",
+              background: "#F77D1A",
               color: "#fff",
               border: 0,
               borderRadius: 999,
-              padding: "18px 40px",
+              padding: "20px 48px",
               fontFamily: "'Nunito', sans-serif",
-              fontWeight: 800,
-              fontSize: 14,
-              letterSpacing: "0.14em",
+              fontWeight: 900,
+              fontSize: 16,
+              letterSpacing: "0.1em",
               textTransform: "uppercase",
               cursor: "pointer",
-              boxShadow: "0 14px 30px -10px rgba(91, 59, 255, 0.35)",
+              boxShadow: "0 14px 32px -8px rgba(247,125,26,0.45)",
               transition: "all 0.18s ease",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 22px 40px -8px rgba(91, 59, 255, 0.45)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 14px 30px -10px rgba(91, 59, 255, 0.35)";
-            }}
-            onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 20px 40px -8px rgba(247,125,26,0.6)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 14px 32px -8px rgba(247,125,26,0.45)"; }}
           >
-            Quero meu filho lendo
-            <span style={{ fontSize: 16 }}>→</span>
+            Quero o kit agora ›
           </button>
         </div>
+
       </div>
     </section>
   );
@@ -1544,299 +1938,97 @@ function Testimonials() {
   const [fade, setFade] = useState(true);
 
   const testimonials = [
-    {
-      id: 1,
-      image: "assets/images/testimonial1.jpg",
-      alt: "Depoimento",
-      rating: 5,
-      comment: "Meu filho começou a ler em poucas semanas! Simplesmente transformou a forma como ele aprende.",
-    },
-    {
-      id: 2,
-      image: "assets/images/testimonial2.jpg",
-      alt: "Depoimento",
-      rating: 5,
-      comment: "Prático, objetivo e super eficaz. Recomendo para todo pai e mãe que quer alfabetizar com método comprovado.",
-    },
-    {
-      id: 3,
-      image: "assets/images/testimonial3.jpg",
-      alt: "Depoimento",
-      rating: 5,
-      comment: "Usamos na escola com todos os alunos. Os resultados foram incríveis em pouco tempo. Muito bom!",
-    },
-    {
-      id: 4,
-      image: "assets/images/testimonial4.jpg",
-      alt: "Depoimento",
-      rating: 5,
-      comment: "Adorei! O material é bem estruturado e fácil de usar em casa. Meu filho está lendo muito melhor agora.",
-    },
-    {
-      id: 5,
-      image: "assets/images/testimonial5.jpg",
-      alt: "Depoimento",
-      rating: 5,
-      comment: "Excelente custo-benefício. Vale muito a pena investir no desenvolvimento da leitura do seu filho com este método!",
-    },
+    { id: 1, image: "assets/images/testimonial1.jpg" },
+    { id: 2, image: "assets/images/testimonial2.jpg" },
+    { id: 3, image: "assets/images/testimonial3.jpg" },
+    { id: 4, image: "assets/images/testimonial4.jpg" },
+    { id: 5, image: "assets/images/testimonial5.jpg" },
   ];
 
-  const goToPrev = () => {
-    setFade(false);
-    setTimeout(() => {
-      setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-      setFade(true);
-    }, 150);
-  };
+  const goTo = (i) => { setFade(false); setTimeout(() => { setCurrent(i); setFade(true); }, 150); };
+  const goToPrev = () => goTo((current - 1 + testimonials.length) % testimonials.length);
+  const goToNext = () => goTo((current + 1) % testimonials.length);
 
-  const goToNext = () => {
-    setFade(false);
-    setTimeout(() => {
-      setCurrent((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-      setFade(true);
-    }, 150);
-  };
+  const NavBtn = ({ onClick, children }) => (
+    <button className="nav-btn-circle" onClick={onClick} style={{
+      width: 44, height: 44, minWidth: 44, minHeight: 44, borderRadius: "50%",
+      background: "#fff", border: "2px solid #7751CF", color: "#7751CF",
+      cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+      flexShrink: 0, transition: "all 0.2s ease", padding: 0,
+    }}
+      onMouseEnter={e => { e.currentTarget.style.background = "#7751CF"; e.currentTarget.style.color = "#fff"; }}
+      onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = "#7751CF"; }}
+    >{children}</button>
+  );
 
   return (
-    <section style={{ background: "#f8f5ff", padding: "100px clamp(24px, 6vw, 96px)" }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto" }}>
+    <section style={{ background: "#fff", padding: "100px clamp(24px, 6vw, 96px)" }}>
+      <div style={{ maxWidth: 900, margin: "0 auto" }}>
+
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 60 }}>
-          <h2
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 900,
-              color: "#5b3bff",
-              fontSize: "clamp(32px, 3.4vw, 48px)",
-              lineHeight: 1.05,
-              margin: "0 0 16px",
-              maxWidth: 700,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            Veja o que pais e educadores estão dizendo
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", color: "#F77D1A", margin: "0 0 12px" }}>Depoimentos</p>
+          <h2 style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 900, color: "#7751CF", fontSize: "clamp(28px, 3.4vw, 44px)", lineHeight: 1.08, margin: "0 0 14px" }}>
+            O que pais e educadores estão dizendo
           </h2>
-          <p
-            style={{
-              color: "#7e6cc9",
-              fontSize: 18,
-              fontWeight: 600,
-              margin: 0,
-              maxWidth: 700,
-              marginLeft: "auto",
-              marginRight: "auto",
-              lineHeight: 1.5,
-            }}
-          >
-            Histórias reais de mães, pais e educadores que já viram a transformação começar.
-            Seu filho pode ser o próximo.
+          <p style={{ fontFamily: "'Nunito', sans-serif", color: "#6b6b8a", fontSize: "clamp(15px, 1.6vw, 17px)", fontWeight: 500, margin: 0, lineHeight: 1.6 }}>
+            Histórias reais de famílias que já viram a transformação acontecer.
           </p>
         </div>
 
-        {/* Carousel */}
-        <div
-          style={{
-            position: "relative",
+        {/* Image carousel */}
+        <div style={{ display: "flex", alignItems: "center", gap: 20, maxWidth: 560, margin: "0 auto" }}>
+          <NavBtn onClick={goToPrev}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </NavBtn>
+
+          <div className="testimonials-image-wrap" style={{
+            flex: 1,
+            height: 420,
+            borderRadius: 20,
+            overflow: "hidden",
+            boxShadow: "0 12px 40px rgba(119,81,207,0.15)",
+            background: "#f9f7ff",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "clamp(12px, 4vw, 24px)",
-            maxWidth: "clamp(320px, 90vw, 900px)",
-            margin: "0 auto",
-          }}
-        >
-          {/* Left Arrow */}
-          <button
-            onClick={goToPrev}
-            style={{
-              position: "relative",
-              width: "clamp(40px, 10vw, 50px)",
-              height: "clamp(40px, 10vw, 50px)",
-              borderRadius: "50%",
-              background: "#fff",
-              border: "2px solid #5b3bff",
-              color: "#5b3bff",
-              fontSize: "clamp(18px, 5vw, 24px)",
-              fontWeight: 900,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 4px 12px rgba(91, 59, 255, 0.12)",
-              transition: "all 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#5b3bff";
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.transform = "scale(1.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#fff";
-              e.currentTarget.style.color = "#5b3bff";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
-          >
-            ←
-          </button>
-
-          {/* Image Container */}
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: "clamp(280px, 80vw, 500px)",
-              minHeight: "clamp(350px, 60vw, 600px)",
-              borderRadius: 20,
-              overflow: "hidden",
-              boxShadow: "0 20px 50px rgba(91, 59, 255, 0.2)",
-              background: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: 0,
-              flex: 1,
-            }}
-          >
+          }}>
             <img
               src={testimonials[current].image}
-              alt={testimonials[current].alt}
+              alt="Depoimento"
               style={{
                 width: "100%",
                 height: "100%",
                 objectFit: "contain",
                 display: "block",
-                maxWidth: "100%",
-                maxHeight: "clamp(350px, 60vw, 600px)",
                 opacity: fade ? 1 : 0,
-                transition: "opacity 0.3s ease-in-out",
+                transition: "opacity 0.25s ease",
               }}
             />
           </div>
 
-          {/* Right Arrow */}
-          <button
-            onClick={goToNext}
-            style={{
-              position: "relative",
-              width: "clamp(40px, 10vw, 50px)",
-              height: "clamp(40px, 10vw, 50px)",
-              borderRadius: "50%",
-              background: "#fff",
-              border: "2px solid #5b3bff",
-              color: "#5b3bff",
-              fontSize: "clamp(18px, 5vw, 24px)",
-              fontWeight: 900,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 4px 12px rgba(91, 59, 255, 0.12)",
-              transition: "all 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#5b3bff";
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.transform = "scale(1.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#fff";
-              e.currentTarget.style.color = "#5b3bff";
-              e.currentTarget.style.transform = "scale(1)";
-            }}
-          >
-            →
-          </button>
-
+          <NavBtn onClick={goToNext}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </NavBtn>
         </div>
 
-        {/* Static Rating */}
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: 50,
-            marginBottom: 40,
-          }}
-        >
-          <div style={{ marginBottom: 8 }}>
-            {[...Array(5)].map((_, i) => (
-              <span
-                key={i}
-                style={{
-                  fontSize: 24,
-                  color: i < 4 ? "#ffd166" : "#ffebcc",
-                  marginRight: 6,
-                }}
-              >
-                ★
-              </span>
+        {/* Dots + rating */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, marginTop: 36 }}>
+          <div style={{ display: "flex", gap: 8 }}>
+            {testimonials.map((_, i) => (
+              <button key={i} onClick={() => goTo(i)} style={{
+                width: current === i ? 28 : 10, height: 10, borderRadius: 5, padding: 0,
+                background: current === i ? "#7751CF" : "#d4c6ff", border: "none", cursor: "pointer",
+                transition: "all 0.3s ease",
+              }} />
             ))}
           </div>
-          <p
-            style={{
-              margin: 0,
-              color: "#7e6cc9",
-              fontSize: 16,
-              fontWeight: 700,
-            }}
-          >
-            4.9 de 5 • 342 avaliações
-          </p>
-        </div>
-
-        {/* Dots */}
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            justifyContent: "center",
-            marginTop: 40,
-          }}
-        >
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                setFade(false);
-                setTimeout(() => {
-                  setCurrent(i);
-                  setFade(true);
-                }, 150);
-              }}
-              style={{
-                width: current === i ? 32 : 12,
-                height: 12,
-                borderRadius: 6,
-                background: current === i ? "#5b3bff" : "#d4c6ff",
-                border: "none",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                if (current !== i) {
-                  e.currentTarget.style.background = "#b8a8ff";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (current !== i) {
-                  e.currentTarget.style.background = "#d4c6ff";
-                }
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Counter */}
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: 20,
-            color: "#7e6cc9",
-            fontWeight: 600,
-            fontSize: 14,
-          }}
-        >
-          {current + 1} de {testimonials.length} avaliações
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {"★★★★★".split("").map((s, i) => (
+              <span key={i} style={{ fontSize: 20, color: "#ffd166" }}>{s}</span>
+            ))}
+            <span style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 14, color: "#6b6b8a" }}>4.9 de 5 · 342 avaliações</span>
+          </div>
         </div>
       </div>
     </section>
@@ -1846,333 +2038,78 @@ function Testimonials() {
 /* ────────── Product Card / Pricing Section ────────── */
 function ProductCard() {
   const features = [
-    "+170 Atividades com Grafismo Fonético",
-    "Leitura fluida em 4-6 semanas",
-    "Método Fonético comprovado",
-    "Fala Kids - Volume 1 + Volume 2",
-    "Bônus 1: Separe as Sílabas",
-    "Bônus 2: Jogo Fichas Silábicas",
-    "Bônus 3: Monte seu Pôster Gigante",
-  ];
-
-  const skillProductCards = [
-    { angle: -90, dist: 180, title: "Volume 1", color: "#5b3bff" },
-    { angle: -45, dist: 180, title: "Fichas", color: "#ffd166" },
-    { angle: 0, dist: 180, title: "Volume 2", color: "#ff7eb0" },
-    { angle: 45, dist: 180, title: "Pôster", color: "#ff9a3c" },
-    { angle: 90, dist: 180, title: "Bonus", color: "#7feaff" },
+    { text: "+170 Atividades com Grafismo Fonético", bonus: false },
+    { text: "Leitura fluida em 4–6 semanas", bonus: false },
+    { text: "Método Fonético comprovado", bonus: false },
+    { text: "Fala Kids — Volume 1 + Volume 2", bonus: false },
+    { text: "Bônus 1: Colorir com Textura", bonus: true },
+    { text: "Bônus 2: Monte a Palavra", bonus: true },
+    { text: "Bônus 3: Monte seu Pôster Gigante", bonus: true },
   ];
 
   return (
-    <section style={{ background: "#FFE83A", padding: "100px clamp(24px, 6vw, 96px)" }}>
+    <section style={{ background: "#f9f7ff", padding: "100px clamp(24px, 6vw, 96px)" }}>
       <style>{`
-        @keyframes pulse {
-          0%, 100% {
-            box-shadow: 0 12px 30px rgba(91, 59, 255, 0.3);
-          }
-          50% {
-            box-shadow: 0 12px 40px rgba(91, 59, 255, 0.6), 0 0 20px rgba(91, 59, 255, 0.4);
-          }
+        @keyframes pulse-orange {
+          0%, 100% { box-shadow: 0 14px 32px -8px rgba(247,125,26,0.45); }
+          50%       { box-shadow: 0 14px 48px -4px rgba(247,125,26,0.7); }
         }
-        .pulse-button {
-          animation: pulse 2s ease-in-out infinite;
-        }
+        .pulse-button { animation: pulse-orange 2s ease-in-out infinite; }
       `}</style>
-      <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 60, alignItems: "start" }} className="product-grid">
-          {/* LEFT — Features Card */}
-          <div
-            style={{
-              background: "#fff",
-              border: "2px solid #ffe6cc",
-              borderRadius: 20,
-              padding: "clamp(24px, 6vw, 40px) clamp(20px, 5vw, 32px)",
-              boxShadow: "0 8px 24px rgba(255, 154, 60, 0.12)",
-              transition: "all 0.3s ease",
-              margin: "0 auto",
-              maxWidth: 650,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = "0 16px 40px rgba(255, 154, 60, 0.16)";
-              e.currentTarget.style.transform = "translateY(-4px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(255, 154, 60, 0.12)";
-              e.currentTarget.style.transform = "translateY(0)";
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 900,
-                fontSize: "clamp(28px, 3vw, 40px)",
-                lineHeight: 1.05,
-                margin: "0 0 8px",
-                color: "#1c0f3f",
-              }}
-            >
-              Kit Completo Fala Kids
-            </h2>
-            <div
-              style={{
-                fontSize: "clamp(14px, 2vw, 16px)",
-                fontWeight: 700,
-                color: "#7c3aed",
-                marginBottom: 16,
-                backgroundColor: "#f3ebff",
-                padding: "8px 12px",
-                borderRadius: 8,
-                display: "inline-block",
-              }}
-            >
-              ✨ + 3 Bônus Exclusivos
-            </div>
 
-            <p
-              style={{
-                fontSize: 15,
-                color: "#7e6cc9",
-                fontWeight: 500,
-                margin: "0 0 28px",
-                lineHeight: 1.5,
-              }}
-            >
-              Tudo que você precisa para alfabetizar sua criança em semanas usando o método fonético comprovado.
-            </p>
+      <div style={{ maxWidth: 760, margin: "0 auto" }}>
 
-            {/* Features */}
-            <div style={{ marginBottom: 28 }}>
-              {features.map((feature, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    gap: 12,
-                    marginBottom: 12,
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <div
-                    style={{
-                      flexShrink: 0,
-                      width: 22,
-                      height: 22,
-                      borderRadius: "50%",
-                      background: "#7c3aed",
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontWeight: 900,
-                      fontSize: 13,
-                      marginTop: 2,
-                    }}
-                  >
-                    ✓
-                  </div>
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: 14,
-                      fontWeight: 500,
-                      lineHeight: 1.4,
-                      color: "#1c0f3f",
-                    }}
-                  >
-                    {feature}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Promotion Tag */}
-            <div
-              style={{
-                background: "linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 107, 107, 0.1))",
-                border: "2px solid #FF4444",
-                color: "#1c0f3f",
-                padding: "14px 20px",
-                borderRadius: 10,
-                textAlign: "center",
-                marginBottom: 20,
-                fontWeight: 900,
-                fontSize: "clamp(14px, 2.5vw, 17px)",
-                letterSpacing: "0.05em",
-              }}
-            >
-              <div style={{ fontSize: "clamp(11px, 1.8vw, 13px)", opacity: 0.7, marginBottom: 4 }}>
-                DE R$ 199 <del style={{ opacity: 0.5 }}>— Economize 87%</del>
-              </div>
-              <div style={{ color: "#FF4444", fontSize: "clamp(16px, 3vw, 20px)" }}>
-                POR APENAS R$ 24,99
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <button
-              className="pulse-button"
-              style={{
-                width: "100%",
-                background: "#5b3bff",
-                color: "#fff",
-                border: 0,
-                borderRadius: 12,
-                padding: "20px 32px",
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 900,
-                fontSize: 18,
-                cursor: "pointer",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                boxShadow: "0 12px 30px rgba(91, 59, 255, 0.3)",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 16px 40px rgba(91, 59, 255, 0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(91, 59, 255, 0.3)";
-              }}
-              onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
-            >
-              Comprar agora - R$ 24,99
-            </button>
-
-            <div
-              style={{
-                marginTop: 20,
-                paddingTop: 20,
-                borderTop: "1px solid #ffe6cc",
-                textAlign: "center",
-                color: "#cc6600",
-                fontSize: 13,
-                fontWeight: 600,
-              }}
-            >
-              ✨ Garantia 7 dias | Acesso imediato
-            </div>
-
-            {/* Deck-style product cards — Larger with bonus images */}
-            <div
-              className="bonus-deck"
-              style={{
-                marginTop: 40,
-                position: "relative",
-                height: 420,
-                width: "100%",
-                maxWidth: 590,
-                marginLeft: "auto",
-                marginRight: "auto",
-                overflow: "hidden",
-              }}
-            >
-              <img
-                src="assets/images/bonus_1.png"
-                alt="Monte a Palavra"
-                className="bonus-card bonus-card--1"
-                style={{
-                  width: 220,
-                  height: 320,
-                  position: "absolute",
-                  left: 0,
-                  top: 60,
-                  transform: "rotate(-15deg)",
-                  objectFit: "cover",
-                  borderRadius: 12,
-                  zIndex: 1,
-                  filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25))",
-                }}
-              />
-
-              <img
-                src="assets/images/bonus_2.png"
-                alt="Jogo Fichas"
-                className="bonus-card bonus-card--2"
-                style={{
-                  width: 260,
-                  height: 380,
-                  position: "absolute",
-                  left: 140,
-                  top: 0,
-                  transform: "rotate(0deg)",
-                  objectFit: "cover",
-                  borderRadius: 12,
-                  zIndex: 3,
-                  filter: "drop-shadow(0 24px 48px rgba(0, 0, 0, 0.3))",
-                }}
-              />
-
-              <img
-                src="assets/images/bonus_3.png"
-                alt="Colorir e Textura"
-                className="bonus-card bonus-card--3"
-                style={{
-                  width: 220,
-                  height: 320,
-                  position: "absolute",
-                  left: 370,
-                  top: 60,
-                  transform: "rotate(15deg)",
-                  objectFit: "cover",
-                  borderRadius: 12,
-                  zIndex: 1,
-                  filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25))",
-                }}
-              />
-            </div>
-
-            {/* Disclaimer - Bonus Included */}
-            <div
-              style={{
-                marginTop: 40,
-                padding: "24px 20px",
-                background: "linear-gradient(135deg, rgba(123, 58, 237, 0.08), rgba(91, 59, 255, 0.12))",
-                border: "3px solid #7c3aed",
-                borderRadius: 16,
-                textAlign: "center",
-                color: "#1c0f3f",
-              }}
-            >
-              <p style={{ margin: "0 0 12px", fontSize: "clamp(18px, 3vw, 24px)", fontWeight: 900, color: "#7c3aed" }}>
-                ✨ VOCÊ VAI RECEBER 3 BÔNUS EXCLUSIVOS! ✨
-              </p>
-              <p style={{ margin: 0, fontSize: "clamp(14px, 2.2vw, 16px)", fontWeight: 600, lineHeight: 1.6, color: "#5b3bff" }}>
-                Monte a Palavra • Jogo de Fichas Silábicas • Colorir e Texturas
-              </p>
-              <p style={{ margin: "12px 0 0", fontSize: "clamp(13px, 1.8vw, 14px)", fontWeight: 500, color: "#7e6cc9", fontStyle: "italic" }}>
-                Tudo junto na compra hoje!
-              </p>
-            </div>
-          </div>
-
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 52 }}>
+          <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", color: "#F77D1A", margin: "0 0 12px" }}>Oferta especial</p>
+          <h2 style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 900, color: "#7751CF", fontSize: "clamp(32px, 3.6vw, 50px)", lineHeight: 1.08, margin: "0 0 14px" }}>Kit Completo Fala Kids</h2>
+          <p style={{ fontFamily: "'Nunito', sans-serif", color: "#6b6b8a", fontSize: "clamp(15px, 1.6vw, 17px)", fontWeight: 500, margin: 0, lineHeight: 1.6 }}>
+            Tudo que você precisa para alfabetizar seu filho em semanas.
+          </p>
         </div>
 
-        {/* Mobile Adjustments */}
-        <style>{`
-          @media (max-width: 1024px) {
-            .product-grid {
-              grid-template-columns: 1fr !important;
-              gap: 60px !important;
-            }
-          }
-          @media (max-width: 768px) {
-            .product-grid {
-              gap: 40px !important;
-            }
-          }
-          @media (max-width: 480px) {
-            .product-grid {
-              gap: 30px !important;
-            }
-          }
-          @media (max-width: 380px) {
-            .product-grid {
-              gap: 24px !important;
-            }
-          }
-        `}</style>
+        {/* Card */}
+        <div style={{ background: "#fff", borderRadius: 24, padding: "clamp(28px, 5vw, 48px)", boxShadow: "0 8px 40px rgba(119,81,207,0.10)" }}>
+
+          {/* Features list */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 36 }}>
+            {features.map((f, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <CheckCircle size={22} bg={f.bonus ? "#F77D1A" : "#7751CF"} />
+                <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: "clamp(14px, 1.5vw, 16px)", fontWeight: f.bonus ? 700 : 600, color: f.bonus ? "#F77D1A" : "#1c0f3f" }}>{f.text}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Price */}
+          <div style={{ background: "#f9f7ff", borderRadius: 16, padding: "20px 24px", textAlign: "center", marginBottom: 24 }}>
+            <p style={{ margin: "0 0 4px", fontFamily: "'Nunito', sans-serif", fontSize: 13, color: "#6b6b8a", fontWeight: 600 }}>
+              De <span style={{ textDecoration: "line-through" }}>R$ 199</span> — Economize 87%
+            </p>
+            <p style={{ margin: 0, fontFamily: "'Nunito', sans-serif", fontWeight: 900, fontSize: "clamp(28px, 4vw, 40px)", color: "#F77D1A" }}>R$ 24,99</p>
+          </div>
+
+          {/* CTA */}
+          <button
+            className="pulse-button"
+            onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
+            style={{
+              width: "100%", background: "#F77D1A", color: "#fff", border: 0,
+              borderRadius: 999, padding: "20px 32px",
+              fontFamily: "'Nunito', sans-serif", fontWeight: 900, fontSize: 17,
+              cursor: "pointer", textTransform: "uppercase", letterSpacing: "0.1em",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; }}
+          >
+            Comprar agora — R$ 24,99
+          </button>
+
+          <p style={{ textAlign: "center", marginTop: 16, fontFamily: "'Nunito', sans-serif", fontSize: 13, color: "#6b6b8a", fontWeight: 600 }}>
+            ✅ Garantia 7 dias &nbsp;·&nbsp; ⚡ Acesso imediato
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -2183,161 +2120,48 @@ function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
-    {
-      question: "Quais são as Formas de Pagamento?",
-      answer: "Você pode pagar com qualquer cartão, boleto ou PIX.",
-    },
-    {
-      question: "Como acesso a plataforma?",
-      answer: "O acesso à Área de Membros é enviado para seu e-mail imediatamente após a confirmação do pagamento. Lá você poderá baixar todo o conteúdo em PDF!",
-    },
-    {
-      question: "Tenho que pagar todo mês?",
-      answer: "Não, o pagamento é apenas uma vez e você poderá ter acesso a ele vitalício.",
-    },
-    {
-      question: "Posso tirar dúvidas?",
-      answer: "Sim! Basta chamar nossa equipe de suporte pelo botão de WhatsApp dessa página, pelo nosso Instagram, pelo Facebook ou por email.",
-    },
-    {
-      question: "Para quem é indicado o material?",
-      answer: "Nossas atividades de grafismo fonético são projetadas para crianças de diferentes faixas etárias, abrangendo desde a primeira infância até o ensino fundamental.",
-    },
-    {
-      question: "Quais são os benefícios Grafismos Fonéticos?",
-      answer: "Os grafismos fonéticos facilitam a associação entre som e letra, desenvolvem a consciência fonológica e fortalecem a memória visual e auditiva. Eles também aprimoram a coordenação motora e tornam a leitura mais interessante, ajudando a prevenir dificuldades de leitura e incentivando o aprendizado ativo.",
-    },
+    { question: "Quais são as formas de pagamento?", answer: "Você pode pagar com qualquer cartão de crédito, boleto bancário ou PIX." },
+    { question: "Como acesso o material?", answer: "Após a confirmação do pagamento você recebe o acesso por e-mail imediatamente. Todo o conteúdo fica disponível para baixar em PDF quantas vezes quiser." },
+    { question: "Preciso pagar mensalidade?", answer: "Não. É um pagamento único com acesso vitalício — pague uma vez e use para sempre." },
+    { question: "Para quem é indicado?", answer: "Para crianças de 3 a 7 anos. Funciona tanto em casa com pais quanto em sala de aula com educadores." },
+    { question: "Posso tirar dúvidas?", answer: "Sim! Nossa equipe está disponível pelo WhatsApp, Instagram e e-mail para te ajudar no que precisar." },
+    { question: "Como o Grafismo Fonético ajuda na alfabetização?", answer: "Ele associa som e letra de forma natural, desenvolvendo consciência fonológica, coordenação motora e memória auditiva — acelerando o aprendizado da leitura de forma lúdica." },
   ];
 
   return (
-    <section style={{ background: "#f8f5ff", padding: "100px clamp(24px, 6vw, 96px)" }}>
-      <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 60 }}>
-          <h2
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 900,
-              color: "#1c0f3f",
-              fontSize: "clamp(32px, 3.4vw, 48px)",
-              lineHeight: 1.05,
-              margin: "0 0 16px",
-            }}
-          >
-            Perguntas Frequentes
-          </h2>
-          <p
-            style={{
-              color: "#7e6cc9",
-              fontSize: 16,
-              fontWeight: 500,
-              margin: 0,
-              maxWidth: 600,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            Tire suas dúvidas sobre o Kit Completo Fala Kids
-          </p>
+    <section style={{ background: "#fff", padding: "100px clamp(24px, 6vw, 96px)" }}>
+      <div style={{ maxWidth: 800, margin: "0 auto" }}>
+
+        <div style={{ textAlign: "center", marginBottom: 52 }}>
+          <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", color: "#F77D1A", margin: "0 0 12px" }}>Dúvidas</p>
+          <h2 style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 900, color: "#7751CF", fontSize: "clamp(28px, 3.4vw, 44px)", lineHeight: 1.08, margin: 0 }}>Perguntas frequentes</h2>
         </div>
 
-        {/* FAQ Items */}
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: 16 }}
-          className="faq-container"
-        >
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {faqs.map((faq, i) => (
-            <div
-              key={i}
-              style={{
-                background: "#fff",
-                border: "2px solid #f0ebff",
-                borderRadius: 12,
-                overflow: "hidden",
-                transition: "all 0.3s ease",
-              }}
-            >
+            <div key={i} style={{ background: "#f9f7ff", borderRadius: 14, overflow: "hidden", border: openIndex === i ? "2px solid #7751CF" : "2px solid transparent", transition: "border 0.2s ease" }}>
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 style={{
-                  width: "100%",
-                  padding: "clamp(16px, 4vw, 20px) clamp(16px, 4vw, 24px)",
-                  background: "#fff",
-                  border: "none",
-                  textAlign: "left",
-                  cursor: "pointer",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  gap: 16,
-                  transition: "all 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#fafbff";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "#fff";
+                  width: "100%", padding: "18px 22px", background: "transparent", border: "none",
+                  textAlign: "left", cursor: "pointer", display: "flex", justifyContent: "space-between",
+                  alignItems: "center", gap: 16,
                 }}
               >
-                <h3
-                  style={{
-                    fontFamily: "'Nunito', sans-serif",
-                    fontWeight: 900,
-                    fontSize: "clamp(14px, 3vw, 16px)",
-                    color: "#1c0f3f",
-                    margin: 0,
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {faq.question}
-                </h3>
-                <span
-                  style={{
-                    fontSize: 24,
-                    color: "#5b3bff",
-                    fontWeight: 900,
-                    marginLeft: 16,
-                    flexShrink: 0,
-                    transform: openIndex === i ? "rotate(180deg)" : "rotate(0deg)",
-                    transition: "transform 0.3s ease",
-                  }}
-                >
-                  ↓
-                </span>
+                <span style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 800, fontSize: "clamp(14px, 1.5vw, 16px)", color: "#1c0f3f", lineHeight: 1.4 }}>{faq.question}</span>
+                <svg style={{ flexShrink: 0, transform: openIndex === i ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.3s ease", color: "#7751CF" }}
+                  width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
               </button>
-
               {openIndex === i && (
-                <div
-                  style={{
-                    padding: "clamp(12px, 3vw, 20px) clamp(16px, 4vw, 24px)",
-                    borderTop: "1px solid #f0ebff",
-                    color: "#666",
-                    fontSize: "clamp(13px, 2.5vw, 15px)",
-                    lineHeight: 1.6,
-                    fontWeight: 500,
-                  }}
-                >
+                <div style={{ padding: "0 22px 18px", fontFamily: "'Nunito', sans-serif", fontSize: "clamp(13px, 1.4vw, 15px)", color: "#6b6b8a", lineHeight: 1.65, fontWeight: 500 }}>
                   {faq.answer}
                 </div>
               )}
             </div>
           ))}
         </div>
-
-        {/* FAQ Mobile Adjustments */}
-        <style>{`
-          @media (max-width: 640px) {
-            .faq-container {
-              gap: 12px !important;
-            }
-          }
-          @media (max-width: 480px) {
-            .faq-container {
-              gap: 10px !important;
-            }
-          }
-        `}</style>
-
       </div>
     </section>
   );
@@ -2346,11 +2170,33 @@ function FAQ() {
 /* ────────── Footer Section ────────── */
 function Footer() {
   return (
-    <footer style={{ background: "#5b3bff", color: "#fff", padding: "24px clamp(24px, 6vw, 96px)" }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto", textAlign: "center" }}>
-        <p style={{ margin: 0, fontSize: 14, color: "rgba(255,255,255,0.85)" }}>
-          © 2026 Fala Kids. Todos os direitos reservados.
-        </p>
+    <footer style={{ background: "#1c0f3f", color: "#fff", padding: "56px clamp(24px, 6vw, 96px)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 32, marginBottom: 40 }}>
+          {/* Brand */}
+          <div>
+            <img src="assets/images/fala-kids-new-logo-white.png" alt="Fala Kids" style={{ height: 48, display: "block" }} />
+          </div>
+          {/* CTA */}
+          <button
+            onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              background: "#F77D1A", color: "#fff", border: 0, borderRadius: 999,
+              padding: "16px 36px", fontFamily: "'Nunito', sans-serif", fontWeight: 900,
+              fontSize: 15, letterSpacing: "0.1em", textTransform: "uppercase",
+              cursor: "pointer", transition: "all 0.18s ease",
+            }}
+            onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
+            onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+          >
+            Comprar agora ›
+          </button>
+        </div>
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 28, display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12 }}>
+          <p style={{ margin: 0, fontSize: 13, color: "rgba(255,255,255,0.5)", fontFamily: "'Nunito', sans-serif" }}>© 2026 Fala Kids. Todos os direitos reservados.</p>
+          <p style={{ margin: 0, fontSize: 13, color: "rgba(255,255,255,0.5)", fontFamily: "'Nunito', sans-serif" }}>Método Fonético · Alfabetização Infantil</p>
+        </div>
       </div>
     </footer>
   );
@@ -2358,110 +2204,92 @@ function Footer() {
 
 /* ────────── Pain Validation Section ────────── */
 function PainValidation() {
-  const painPoints = [
-    { emoji: "😢", text: "Tarefas de leitura viram sofrimento" },
-    { emoji: "📉", text: "Notas baixas na escola" },
-    { emoji: "😔", text: "Criança se sente 'menos inteligente'" },
-    { emoji: "❌", text: "Acredita que 'não é capaz'" },
-  ];
-
   return (
     <section style={{ background: "#fff", padding: "100px clamp(24px, 6vw, 96px)" }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        {/* Section Title */}
-        <h2
-          style={{
-            fontFamily: "'Nunito', sans-serif",
-            fontWeight: 900,
-            color: "#1c0f3f",
-            fontSize: "clamp(42px, 5vw, 64px)",
-            lineHeight: 1.05,
-            margin: "0 0 60px",
-            maxWidth: 900,
-          }}
-        >
-          Você reconhece isso?
-        </h2>
-
-        {/* Pain Points with Emojis */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 32, marginBottom: 60, maxWidth: 900 }}>
-          {painPoints.map((point, i) => (
-            <div key={i} style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
-              <div style={{ fontSize: "clamp(40px, 5vw, 56px)", lineHeight: 1 }}>
-                {point.emoji}
-              </div>
-              <h3
-                style={{
-                  fontFamily: "'Nunito', sans-serif",
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: "#1c0f3f",
-                  margin: 0,
-                  lineHeight: 1.4,
-                }}
-              >
-                {point.text}
-              </h3>
-            </div>
-          ))}
-        </div>
-
-        {/* Validation Text */}
-        <div style={{ maxWidth: 900 }}>
-          <p
+      {/*
+        Desktop: 2-column grid — left col has header (row 1) + body (row 2),
+                                  right col has image spanning both rows.
+        Mobile:  flex column   — header (order 1) → image (order 2) → body (order 3).
+      */}
+      <div style={{
+        maxWidth: 1200,
+        margin: "0 auto",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "clamp(40px, 6vw, 80px)",
+        alignItems: "start",
+      }}
+        className="pain-grid"
+      >
+        {/* Header — desktop: left col row 1 / mobile: order 1 */}
+        <div className="pain-header">
+          <h2
             style={{
               fontFamily: "'Nunito', sans-serif",
-              fontSize: 18,
-              lineHeight: 1.65,
-              color: "#1c0f3f",
-              margin: "0 0 24px",
-              fontWeight: 500,
+              fontWeight: 900,
+              color: "#7751CF",
+              fontSize: "clamp(32px, 4vw, 52px)",
+              lineHeight: 1.1,
+              margin: 0,
             }}
           >
-            Muitos pais vivem essa realidade todos os dias. Mas você não está sozinho nesse desafio.
-          </p>
+            Sem tempo?<br />A gente te ajuda!
+          </h2>
+        </div>
 
+        {/* Image — desktop: right col spans rows 1+2 / mobile: order 2 */}
+        <div className="pain-image" style={{ gridRow: "1 / 3" }}>
+          <img
+            src="assets/images/busy-mom2.png"
+            alt="Mãe ocupada com filho"
+            style={{
+              width: "100%",
+              height: "clamp(340px, 45vw, 520px)",
+              objectFit: "cover",
+              borderRadius: 24,
+              display: "block",
+            }}
+          />
+        </div>
+
+        {/* Body text — desktop: left col row 2 / mobile: order 3 */}
+        <div className="pain-body">
           <p
             style={{
               fontFamily: "'Nunito', sans-serif",
-              fontSize: 16,
-              lineHeight: 1.65,
-              color: "rgba(28, 15, 63, 0.75)",
+              fontSize: "clamp(16px, 1.8vw, 19px)",
+              lineHeight: 1.75,
+              color: "#1c0f3f",
               margin: "0 0 28px",
               fontWeight: 500,
             }}
           >
-            O problema não é culpa sua. Ninguém te ensinou que <strong>a falta de estímulo fonético na fase certa</strong> é o que realmente atrasa a leitura.
+            Na correria do dia a dia, muitos pais querem participar mais da <strong>alfabetização dos filhos</strong>, mas simplesmente não têm <strong>tempo</strong> ou o <strong>material certo</strong> para preparar atividades adequadas.
           </p>
 
           <p
             style={{
               fontFamily: "'Nunito', sans-serif",
-              fontSize: "clamp(22px, 3vw, 32px)",
-              fontWeight: 700,
-              color: "#5b3bff",
-              margin: 0,
-              lineHeight: 1.4,
+              fontSize: "clamp(16px, 1.8vw, 19px)",
+              lineHeight: 1.75,
+              color: "#1c0f3f",
+              margin: "0 0 32px",
+              fontWeight: 500,
             }}
           >
-            Mas isso pode mudar. E rápido.
+            E o <strong>estímulo em casa faz diferença</strong> no desenvolvimento infantil, principalmente porque a criança aprende <strong>no próprio ritmo, sem pressão e se divertindo</strong> em um ambiente familiar.
+          </p>
+
+          <p style={{
+            fontFamily: "'Nunito', sans-serif",
+            fontSize: "clamp(24px, 3vw, 36px)",
+            fontWeight: 900,
+            color: "#F77D1A",
+            margin: 0,
+          }}>
+            É aí que nós entramos!
           </p>
         </div>
-
-        {/* Mobile Adjustments */}
-        <style>{`
-          @media (max-width: 980px) {
-            .pain-validation-grid {
-              grid-template-columns: 1fr !important;
-              gap: 60px !important;
-            }
-          }
-          @media (max-width: 640px) {
-            .pain-validation-grid {
-              gap: 40px !important;
-            }
-          }
-        `}</style>
       </div>
     </section>
   );
@@ -2485,8 +2313,9 @@ function Page() {
     <>
       <Hero />
       <PainValidation />
+      <KitOverview />
       <Skills />
-      <WhyItWorks />
+      <KitCarousel />
       <HowToApply />
       <Testimonials />
       <ProductCard />
