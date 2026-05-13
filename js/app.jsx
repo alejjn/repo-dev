@@ -20,7 +20,7 @@ const COPY = {
     script2: "Kids",
     superLabel: "kit",
     headline: "Seu filho alfabetizado até 5x mais rápido.",
-    lede: "Fala Kids é a melhor forma de aprender brincando",
+    lede: "Seu filho lendo frases inteiras em 15 dias sem pressão, sem choro e brincando.",
     cta: "Quero meu filho lendo agora",
   },
   short: {
