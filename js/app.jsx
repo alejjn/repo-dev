@@ -717,6 +717,159 @@ function CoverLinguagem() {
   );
 }
 
+/* ────────── Sticky Urgency Bar ────────── */
+function useCountdown(targetDate) {
+  const calc = () => {
+    const diff = targetDate - Date.now();
+    if (diff <= 0) return { h: 0, m: 0, s: 0 };
+    return {
+      h: Math.floor(diff / 3_600_000),
+      m: Math.floor((diff % 3_600_000) / 60_000),
+      s: Math.floor((diff % 60_000) / 1_000),
+    };
+  };
+  const [time, setTime] = React.useState(calc);
+  React.useEffect(() => {
+    const id = setInterval(() => setTime(calc()), 1_000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
+
+function StickyUrgencyBar() {
+  const [visible, setVisible] = React.useState(false);
+  // Oferta expira em 4h a partir do primeiro render
+  const expiresAt = React.useRef(Date.now() + 10 * 60_000);
+  const { h, m, s } = useCountdown(expiresAt.current);
+  const pad = (n) => String(n).padStart(2, "0");
+
+  // Aparece quando a Hero section sai do viewport
+  React.useEffect(() => {
+    const hero = document.querySelector(".hero");
+    if (!hero) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(hero);
+    return () => obs.disconnect();
+  }, []);
+
+  const Unit = ({ value, label }) => (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", minWidth: 36 }}>
+      <span style={{
+        fontFamily: "'Nunito', sans-serif",
+        fontWeight: 900,
+        fontSize: "clamp(18px, 2.2vw, 24px)",
+        lineHeight: 1,
+        color: "#fff",
+        letterSpacing: "0.04em",
+      }}>{pad(value)}</span>
+      <span style={{
+        fontFamily: "'Nunito', sans-serif",
+        fontWeight: 600,
+        fontSize: 9,
+        textTransform: "uppercase",
+        letterSpacing: "0.1em",
+        color: "rgba(255,255,255,0.65)",
+        marginTop: 2,
+      }}>{label}</span>
+    </div>
+  );
+
+  const Colon = () => (
+    <span style={{
+      fontFamily: "'Nunito', sans-serif",
+      fontWeight: 900,
+      fontSize: "clamp(18px, 2.2vw, 24px)",
+      color: "rgba(255,255,255,0.5)",
+      lineHeight: 1,
+      marginBottom: 10,
+    }}>:</span>
+  );
+
+  return (
+    <div style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 9990,
+      transform: visible ? "translateY(0)" : "translateY(-110%)",
+      transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+      background: "linear-gradient(90deg, #1c0f3f 0%, #7751CF 50%, #1c0f3f 100%)",
+      boxShadow: "0 4px 24px rgba(0,0,0,0.25)",
+    }}>
+      <div style={{
+        maxWidth: 1200,
+        margin: "0 auto",
+        padding: "10px clamp(16px, 4vw, 48px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "clamp(12px, 3vw, 32px)",
+        flexWrap: "wrap",
+      }}>
+        {/* Label */}
+        <span style={{
+          fontFamily: "'Nunito', sans-serif",
+          fontWeight: 700,
+          fontSize: "clamp(12px, 1.4vw, 14px)",
+          color: "rgba(255,255,255,0.85)",
+          textTransform: "uppercase",
+          letterSpacing: "0.12em",
+          whiteSpace: "nowrap",
+        }}>
+          🔥 Oferta expira em
+        </span>
+
+        {/* Timer */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <Unit value={h} label="horas" />
+          <Colon />
+          <Unit value={m} label="min" />
+          <Colon />
+          <Unit value={s} label="seg" />
+        </div>
+
+        {/* Divider */}
+        <div style={{ width: 1, height: 28, background: "rgba(255,255,255,0.2)", flexShrink: 0 }} className="urgency-divider" />
+
+        {/* CTA */}
+        <button
+          onClick={() => window.location.href = "https://pay.kiwify.com.br/qI0dhGA"}
+          style={{
+            background: "#F77D1A",
+            color: "#fff",
+            border: 0,
+            borderRadius: 999,
+            padding: "8px 22px",
+            fontFamily: "'Nunito', sans-serif",
+            fontWeight: 900,
+            fontSize: "clamp(12px, 1.4vw, 14px)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            cursor: "pointer",
+            whiteSpace: "nowrap",
+            transition: "transform 0.15s ease, box-shadow 0.15s ease",
+            boxShadow: "0 4px 16px rgba(247,125,26,0.4)",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.05)"; }}
+          onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
+        >
+          Garantir R$ 24,99 ›
+        </button>
+      </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          .urgency-divider { display: none; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 /* ────────── Hero Section ────────── */
 function Hero() {
   const palette = PALETTES[0];
@@ -2238,6 +2391,7 @@ function Page() {
 
   return (
     <>
+      <StickyUrgencyBar />
       <Hero />
       <PainValidation />
       <KitOverview />
