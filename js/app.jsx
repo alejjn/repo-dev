@@ -2250,6 +2250,18 @@ function FAQ() {
 /* ────────── WhatsApp Button ────────── */
 function WhatsAppButton() {
   const [hovered, setHovered] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const hero = document.querySelector(".hero");
+    if (!hero) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(hero);
+    return () => obs.disconnect();
+  }, []);
   const number = "5513978089429";
   const message = encodeURIComponent("Olá! Tenho uma dúvida sobre o Kit Fala Kids.");
   const url = `https://wa.me/${number}?text=${message}`;
@@ -2257,12 +2269,17 @@ function WhatsAppButton() {
   return (
     <div style={{
       position: "fixed",
-      bottom: 24,
-      left: 24,
+      bottom: 20,
+      right: 20,
       zIndex: 9989,
       display: "flex",
+      flexDirection: "row-reverse",
       alignItems: "center",
       gap: 10,
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "opacity 0.3s ease, transform 0.3s ease",
+      pointerEvents: visible ? "auto" : "none",
     }}>
       {/* Popup */}
       <div style={{
