@@ -857,7 +857,7 @@ function StickyUrgencyBar() {
           onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.05)"; }}
           onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
         >
-          Garantir R$ 24,99 ›
+          Quero meu pequeno lendo ›
         </button>
       </div>
 
