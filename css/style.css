@@ -14,7 +14,6 @@ html {
   width: 100%;
   max-width: 100%;
   height: auto;
-  overflow-x: hidden; /* fallback */
   overflow-x: clip;
   overflow-y: auto;
   margin: 0;
@@ -29,11 +28,9 @@ body {
   color: #1c0f3f;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden; /* fallback */
   overflow-x: clip;
   overflow-y: auto;
   -webkit-font-smoothing: antialiased;
-  position: relative;
 }
 
 #root {
@@ -83,7 +80,6 @@ section:is(.hero) {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    overflow-x: clip !important;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -689,7 +685,7 @@ h1.headline {
 
   .stack-wrap img {
     width: 100% !important;
-    max-width: 480px !important;
+    max-width: 100% !important;
   }
 }
 
