@@ -2247,6 +2247,71 @@ function FAQ() {
   );
 }
 
+/* ────────── WhatsApp Button ────────── */
+function WhatsAppButton() {
+  const [hovered, setHovered] = React.useState(false);
+  const number = "5513978089429";
+  const message = encodeURIComponent("Olá! Tenho uma dúvida sobre o Kit Fala Kids.");
+  const url = `https://wa.me/${number}?text=${message}`;
+
+  return (
+    <div style={{
+      position: "fixed",
+      bottom: 24,
+      left: 24,
+      zIndex: 9989,
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+    }}>
+      {/* Popup */}
+      <div style={{
+        background: "#fff",
+        borderRadius: 10,
+        padding: "8px 14px",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+        fontFamily: "'Nunito', sans-serif",
+        fontWeight: 700,
+        fontSize: 13,
+        color: "#1c0f3f",
+        whiteSpace: "nowrap",
+        opacity: hovered ? 1 : 0,
+        transform: hovered ? "translateX(0)" : "translateX(-8px)",
+        transition: "opacity 0.2s ease, transform 0.2s ease",
+        pointerEvents: "none",
+      }}>
+        Dúvidas? Fale Conosco 💬
+      </div>
+
+      {/* Button */}
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          width: 56,
+          height: 56,
+          borderRadius: "50%",
+          background: "#25D366",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 20px rgba(37,211,102,0.45)",
+          transition: "transform 0.2s ease, box-shadow 0.2s ease",
+          transform: hovered ? "scale(1.1)" : "scale(1)",
+          flexShrink: 0,
+        }}
+      >
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="#fff">
+          <path d="M16 2C8.268 2 2 8.268 2 16c0 2.492.644 4.835 1.77 6.87L2 30l7.34-1.92A13.94 13.94 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 0 1-5.83-1.594l-.418-.248-4.355 1.14 1.16-4.24-.272-.435A11.46 11.46 0 0 1 4.5 16C4.5 9.596 9.596 4.5 16 4.5S27.5 9.596 27.5 16 22.404 27.5 16 27.5zm6.29-8.61c-.344-.172-2.036-1.004-2.352-1.118-.316-.115-.546-.172-.776.172-.23.344-.89 1.118-1.09 1.348-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.766-1.707-1.022-.912-1.712-2.038-1.912-2.382-.2-.344-.022-.53.15-.702.155-.155.344-.4.516-.602.172-.2.23-.344.344-.574.115-.23.058-.43-.028-.602-.086-.172-.776-1.87-1.062-2.56-.28-.672-.564-.58-.776-.59l-.66-.012c-.23 0-.602.086-.916.43s-1.204 1.176-1.204 2.868 1.232 3.328 1.404 3.558c.172.23 2.424 3.702 5.874 5.19.82.354 1.46.566 1.96.724.822.262 1.57.224 2.16.136.66-.098 2.036-.832 2.322-1.636.286-.804.286-1.492.2-1.636-.084-.144-.314-.23-.658-.4z"/>
+        </svg>
+      </a>
+    </div>
+  );
+}
+
 /* ────────── Footer Section ────────── */
 function Footer() {
   return (
@@ -2393,6 +2458,7 @@ function Page() {
   return (
     <>
       <StickyUrgencyBar />
+      <WhatsAppButton />
       <Hero />
       <PainValidation />
       <KitOverview />
