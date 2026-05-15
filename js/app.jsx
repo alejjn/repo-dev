@@ -1396,6 +1396,7 @@ function KitOverview() {
 /* ────────── Kit Carousel Section ────────── */
 function KitCarousel() {
   const [current, setCurrent] = React.useState(0);
+  const touchStartX = React.useRef(null);
   const images = [
     "assets/images/produto_amostra_2.webp",
     "assets/images/produto_amostra_1.webp",
@@ -1407,6 +1408,16 @@ function KitCarousel() {
 
   const prev = () => setCurrent(i => (i - 1 + images.length) % images.length);
   const next = () => setCurrent(i => (i + 1) % images.length);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? next() : prev();
+    touchStartX.current = null;
+  };
 
   const getPos = (i) => {
     const total = images.length;
@@ -1442,13 +1453,16 @@ function KitCarousel() {
         </div>
 
         {/* Carousel track */}
-        <div style={{
-          position: "relative",
-          height: "clamp(360px, 50vw, 560px)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{
+            position: "relative",
+            height: "clamp(360px, 50vw, 560px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
           {images.map((src, i) => {
             const pos = getPos(i);
             const isCenter = pos === 0;
@@ -1832,6 +1846,7 @@ function HowToApply() {
 function Testimonials() {
   const [current, setCurrent] = useState(0);
   const [fade, setFade] = useState(true);
+  const touchStartX = React.useRef(null);
 
   const testimonials = [
     { id: 1, image: "assets/images/testimonial1.jpg" },
@@ -1844,6 +1859,16 @@ function Testimonials() {
   const goTo = (i) => { setFade(false); setTimeout(() => { setCurrent(i); setFade(true); }, 150); };
   const goToPrev = () => goTo((current - 1 + testimonials.length) % testimonials.length);
   const goToNext = () => goTo((current + 1) % testimonials.length);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? goToNext() : goToPrev();
+    touchStartX.current = null;
+  };
 
   const NavBtn = ({ onClick, children }) => (
     <button className="nav-btn-circle" onClick={onClick} style={{
@@ -1878,17 +1903,21 @@ function Testimonials() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </NavBtn>
 
-          <div className="testimonials-image-wrap" style={{
-            flex: 1,
-            height: 420,
-            borderRadius: 20,
-            overflow: "hidden",
-            boxShadow: "0 12px 40px rgba(119,81,207,0.15)",
-            background: "#f9f7ff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
+          <div
+            className="testimonials-image-wrap"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            style={{
+              flex: 1,
+              height: 420,
+              borderRadius: 20,
+              overflow: "hidden",
+              boxShadow: "0 12px 40px rgba(119,81,207,0.15)",
+              background: "#f9f7ff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
             <img
               src={testimonials[current].image}
               alt="Depoimento"
