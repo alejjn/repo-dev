@@ -20,7 +20,7 @@ const COPY = {
     script2: "Kids",
     superLabel: "kit",
     headline: "Seu filho alfabetizado até 5x mais rápido.",
-    lede: "Seu filho lendo frases inteiras em 15 dias sem pressão, sem choro e brincando.",
+    lede: "Seu pequeno lendo frases inteiras em 15 dias sem pressão, sem choro e brincando.",
     cta: "Quero meu filho lendo agora",
   },
   short: {
@@ -890,8 +890,9 @@ function Hero() {
           </div>
 
           <h1 className="headline hero-headline">
-            Seu filho alfabetizado até{" "}
-            <span style={{ color: "#F77D1A" }}>5x mais rápido.</span>
+            O método que ensina{" "}
+            <span style={{ color: "#F77D1A" }}>qualquer criança</span>{" "}
+            a ler 5x mais rápido.
           </h1>
           <p className="lede hero-lede">{c.lede}</p>
 
@@ -2182,7 +2183,7 @@ function ProductCard() {
             onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; }}
           >
-            Comprar agora — R$ 24,99
+            Quero meu pequeno lendo agora
           </button>
 
           <p style={{ textAlign: "center", marginTop: 16, fontFamily: "'Nunito', sans-serif", fontSize: 13, color: "#6b6b8a", fontWeight: 600 }}>
