@@ -1405,8 +1405,8 @@ function KitOverview() {
     { label: "Leitura fluida em 15 dias", highlight: false },
     { label: "Método Fonético comprovado", highlight: false },
     { label: "Fala Kids — Volume 1 + Volume 2", highlight: false },
-    { label: "Bônus 1: Colorir com Textura — sensorial e criativo", bonus: true },
-    { label: "Bônus 2: Monte a Palavra — sílabas e lógica", bonus: true },
+    { label: "Bônus 1: Jogo Ficha Silábica", bonus: true },
+    { label: "Bônus 2: Separe as Sílabas", bonus: true },
     { label: "Bônus 3: Monte seu Pôster Gigante", bonus: true },
   ];
 
@@ -2122,8 +2122,8 @@ function ProductCard() {
     { text: "Leitura fluida em 15 dias", bonus: false },
     { text: "Método Fonético comprovado", bonus: false },
     { text: "Fala Kids — Volume 1 + Volume 2", bonus: false },
-    { text: "Bônus 1: Colorir com Textura", bonus: true },
-    { text: "Bônus 2: Monte a Palavra", bonus: true },
+    { text: "Bônus 1: Jogo Ficha Silábica", bonus: true },
+    { text: "Bônus 2: Separe as Sílabas", bonus: true },
     { text: "Bônus 3: Monte seu Pôster Gigante", bonus: true },
   ];
 
