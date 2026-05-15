@@ -2273,12 +2273,12 @@ function WhatsAppButton() {
       right: 20,
       zIndex: 9989,
       display: "flex",
-      flexDirection: "row-reverse",
+      flexDirection: "row",
       alignItems: "center",
       gap: 10,
+      width: "fit-content",
       opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(20px)",
-      transition: "opacity 0.3s ease, transform 0.3s ease",
+      transition: "opacity 0.3s ease",
       pointerEvents: visible ? "auto" : "none",
     }}>
       {/* Popup */}
