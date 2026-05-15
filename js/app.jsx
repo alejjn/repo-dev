@@ -21,7 +21,7 @@ const COPY = {
     superLabel: "kit",
     headline: "Seu filho alfabetizado até 5x mais rápido.",
     lede: "Seu pequeno lendo frases inteiras em 15 dias sem pressão, sem choro e brincando.",
-    cta: "Quero meu filho lendo agora",
+    cta: "Quero meu pequeno lendo agora",
   },
   short: {
     script1: "Fala",
@@ -36,7 +36,7 @@ const COPY = {
     script2: "Kids",
     superLabel: "pro",
     headline: "Alfabetize sua turma com o método que funciona",
-    lede: "170+ atividades de grafismo fonético. Resultados comprovados em semanas. Funciona com crianças de 3 a 7 anos e para dificuldades de aprendizado.",
+    lede: "170+ atividades de grafismo fonético. Resultados comprovados em semanas. Funciona com crianças de 2 a 12 anos e para dificuldades de aprendizado.",
     cta: "Quero meu filho lendo",
   },
 };
@@ -922,7 +922,7 @@ function Hero() {
                 />
               ))}
             </div>
-            <span>+ de 5.200 famílias já alfabetizaram seus filhos</span>
+            <span>+ de 5.200 pais e educadores já usaram o método</span>
           </div>
         </div>
 
@@ -1324,7 +1324,7 @@ function Skills() {
             color: "#F77D1A",
             margin: "0 0 12px",
           }}>
-            O que seu filho aprende
+            O que seu pequeno aprende
           </p>
 
           <h2 style={{
@@ -1346,7 +1346,7 @@ function Skills() {
             margin: "0 0 32px",
             lineHeight: 1.6,
           }}>
-            Com o Kit Completo Fala Kids, seu filho vai trabalhar:
+            Com o Kit Completo Fala Kids, seu pequeno vai trabalhar:
           </p>
 
           <ul style={{
@@ -1384,7 +1384,7 @@ function Skills() {
             color: "#2a1d6e",
             lineHeight: 1.6,
           }}>
-            Perfeito para crianças de <strong>3 a 7 anos</strong> — apenas <strong>20 minutos por dia</strong> é suficiente.
+            Perfeito para crianças de <strong>2 a 12 anos</strong> — apenas <strong>20 minutos por dia</strong> é suficiente.
           </div>
         </div>
       </div>
@@ -1474,7 +1474,7 @@ function KitOverview() {
             margin: "0 auto",
             lineHeight: 1.65,
           }}>
-            Tudo que você precisa para alfabetizar seu filho em casa — com método, progressão e muito afeto.
+            Tudo que você precisa para alfabetizar seu pequeno com método, progressão e muito afeto.
           </p>
         </div>
 
@@ -1847,7 +1847,7 @@ function HowToApply() {
       ),
       num: "03",
       title: "Evolução garantida",
-      desc: "Semana a semana, veja seu filho reconhecer letras, formar sílabas e ler palavras.",
+      desc: "Semana a semana, veja seu pequeno reconhecer letras, formar sílabas e ler palavras.",
     },
   ];
 
@@ -1893,7 +1893,7 @@ function HowToApply() {
             marginRight: "auto",
             lineHeight: 1.65,
           }}>
-            15 minutos por dia é tudo que você precisa para ver seu filho evoluir semana a semana.
+            15 minutos por dia é tudo que você precisa para ver seu pequeno evoluir semana a semana.
           </p>
         </div>
 
@@ -2144,7 +2144,7 @@ function ProductCard() {
           <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", color: "#F77D1A", margin: "0 0 12px" }}>Oferta especial</p>
           <h2 style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 900, color: "#7751CF", fontSize: "clamp(32px, 3.6vw, 50px)", lineHeight: 1.08, margin: "0 0 14px" }}>Kit Completo Fala Kids</h2>
           <p style={{ fontFamily: "'Nunito', sans-serif", color: "#6b6b8a", fontSize: "clamp(15px, 1.6vw, 17px)", fontWeight: 500, margin: 0, lineHeight: 1.6 }}>
-            Tudo que você precisa para alfabetizar seu filho em semanas.
+            Tudo que você precisa para alfabetizar seu pequeno em semanas.
           </p>
         </div>
 
@@ -2203,7 +2203,7 @@ function FAQ() {
     { question: "Quais são as formas de pagamento?", answer: "Você pode pagar com qualquer cartão de crédito, boleto bancário ou PIX." },
     { question: "Como acesso o material?", answer: "Após a confirmação do pagamento você recebe o acesso por e-mail imediatamente. Todo o conteúdo fica disponível para baixar em PDF quantas vezes quiser." },
     { question: "Preciso pagar mensalidade?", answer: "Não. É um pagamento único com acesso vitalício — pague uma vez e use para sempre." },
-    { question: "Para quem é indicado?", answer: "Para crianças de 3 a 7 anos. Funciona tanto em casa com pais quanto em sala de aula com educadores." },
+    { question: "Para quem é indicado?", answer: "Para crianças de 2 a 12 anos. Funciona tanto em casa com pais quanto em sala de aula com educadores." },
     { question: "Posso tirar dúvidas?", answer: "Sim! Nossa equipe está disponível pelo WhatsApp, Instagram e e-mail para te ajudar no que precisar." },
     { question: "Como o Grafismo Fonético ajuda na alfabetização?", answer: "Ele associa som e letra de forma natural, desenvolvendo consciência fonológica, coordenação motora e memória auditiva — acelerando o aprendizado da leitura de forma lúdica." },
   ];
@@ -2345,7 +2345,7 @@ function PainValidation() {
               fontWeight: 500,
             }}
           >
-            Na correria do dia a dia, muitos pais querem participar mais da <strong>alfabetização dos filhos</strong>, mas simplesmente não têm <strong>tempo</strong> ou o <strong>material certo</strong> para preparar atividades adequadas.
+            Na correria do dia a dia, muitos pais e educadores querem estimular mais a <strong>alfabetização das crianças</strong>, mas simplesmente não têm <strong>tempo</strong> ou o <strong>material certo</strong> para preparar atividades adequadas.
           </p>
 
           <p
@@ -2358,7 +2358,7 @@ function PainValidation() {
               fontWeight: 500,
             }}
           >
-            E o <strong>estímulo em casa faz diferença</strong> no desenvolvimento infantil, principalmente porque a criança aprende <strong>no próprio ritmo, sem pressão e se divertindo</strong> em um ambiente familiar.
+            E o <strong>estímulo faz diferença</strong> no desenvolvimento infantil, principalmente porque a criança aprende <strong>no próprio ritmo, sem pressão e se divertindo</strong>.
           </p>
 
           <p style={{
