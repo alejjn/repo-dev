@@ -1258,7 +1258,7 @@ function Skills() {
 
               <video
                 ref={videoRef}
-                src="assets/videos/criativo-fala-kids-1.mp4"
+                src="assets/videos/criativo_site.mp4"
                 poster="assets/images/juba-do-leao.webp"
                 playsInline
                 controls={playing}
