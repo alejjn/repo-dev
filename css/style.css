@@ -756,10 +756,8 @@ h1.headline {
 
   .stack-wrap img {
     width: 140% !important;
-    max-width: 140% !important;
-    position: relative !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    max-width: none !important;
+    flex-shrink: 0 !important;
   }
 
   /* 3-6 — Rest of hero text */
