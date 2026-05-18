@@ -755,8 +755,9 @@ h1.headline {
   }
 
   .stack-wrap img {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 130% !important;
+    max-width: 130% !important;
+    margin-left: -15% !important;
   }
 
   /* 3-6 — Rest of hero text */
