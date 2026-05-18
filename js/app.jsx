@@ -857,7 +857,7 @@ function StickyUrgencyBar() {
           onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.05)"; }}
           onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }}
         >
-          Quero meu pequeno lendo ›
+          Quero meu pequeno lendo — R$ 29,90 ›
         </button>
       </div>
 
@@ -894,7 +894,31 @@ function Hero() {
             <span style={{ color: "#F77D1A" }}>qualquer criança</span>{" "}
             a ler 5x mais rápido.
           </h1>
-          <p className="lede hero-lede">{c.lede}</p>
+          <ul style={{
+            listStyle: "none",
+            padding: 0,
+            margin: "0 0 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }} className="hero-lede">
+            {[
+              "✅ 170+ atividades progressivas",
+              "🎮 Jogos e fichas interativas",
+              "🖐️ Estimulação sensorial com textura",
+              "🖨️ Imprime em casa, quantas vezes quiser",
+            ].map((item, i) => (
+              <li key={i} style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(14px, 1.6vw, 16px)",
+                color: "rgba(255,255,255,0.9)",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}>{item}</li>
+            ))}
+          </ul>
 
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }} className="hero-ctas">
             <button
