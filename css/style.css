@@ -738,7 +738,7 @@ h1.headline {
     margin-bottom: 4px !important;
   }
   .hero-logo img {
-    max-width: 130px !important;
+    max-width: 90px !important;
   }
 
   /* 2 — Hero image: show below logo */
@@ -748,10 +748,15 @@ h1.headline {
     position: relative !important;
     height: auto !important;
     width: 100% !important;
-    margin: 8px 0 16px !important;
+    margin: 4px 0 8px !important;
     flex-shrink: 0 !important;
     overflow: visible !important;
     justify-content: center !important;
+  }
+
+  .stack-wrap img {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* 3-6 — Rest of hero text */
@@ -766,6 +771,11 @@ h1.headline {
     width: 100% !important;
     text-align: center !important;
     max-width: 100% !important;
+    align-items: center !important;
+  }
+
+  .hero-lede li {
+    justify-content: center !important;
   }
   /* CTAs: both buttons centered */
   .hero-ctas {
