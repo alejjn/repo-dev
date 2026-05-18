@@ -755,7 +755,7 @@ h1.headline {
   }
 
   .stack-wrap img {
-    width: 140% !important;
+    width: 160% !important;
     max-width: none !important;
     flex-shrink: 0 !important;
   }
